@@ -8,7 +8,14 @@
         margin-bottom: 25px;
     }
 
+    .subheading {
+        color: #fbfbfb;
+        text-decoration: underline;
+    }
 
+    .subtitle {
+        color: #fbfbfb;
+    }
 
     /* ------- hero section ------ */
     .lottie-bg {
@@ -55,5 +62,45 @@
         border: 2px solid #fbfbfb;
         color: #fbfbfb;
         min-width: 134px;
-
     }
+
+    .hero-buttons:hover {
+        border: none;
+        background-color: #FFC306;
+        color: #191B23;
+    }
+
+/* ----------------------------- Blog Preview -------*/
+
+.blog-card {
+    border-radius: 2%;
+    height: 525px;
+    background-color: #191B23;
+    color: #fbfbfb;
+    box-shadow: 0px 0px 8px 4px rgba(251, 251, 251, 0.2)
+}
+
+.author-info p {
+    margin: 0;
+}
+
+.author-photo {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    margin-top: 25px;
+}
+
+.blog-post-preview {
+    margin: 12px;
+}
+
+.read-more-btn {
+    background-color: #FF9901;
+    color: #191B23;
+}
+
+.read-more-btn:hover {
+    background-color: #FFC306;
+    color: #191B23;
+}
