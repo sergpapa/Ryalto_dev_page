@@ -17,6 +17,19 @@
         color: #fbfbfb;
     }
 
+    .home-page-btn {
+        border: 2px solid #fbfbfb;
+        background-color: #191B23;
+        color: #fbfbfb;
+        min-width: 134px;
+    }
+
+    .home-page-btn:hover {
+        border: none;
+        background-color: #FFC306;
+        color: #191B23;
+    }
+
     /* ------- hero section ------ */
     .lottie-bg {
         position: fixed;
@@ -58,26 +71,19 @@
         padding-right: 10%;
     }
 
-    .hero-buttons {
-        border: 2px solid #fbfbfb;
-        color: #fbfbfb;
-        min-width: 134px;
-    }
-
-    .hero-buttons:hover {
-        border: none;
-        background-color: #FFC306;
-        color: #191B23;
-    }
 
 /* ----------------------------- Blog Preview -------*/
 
 .blog-card {
     border-radius: 2%;
-    height: 525px;
+    height: 500px;
     background-color: #191B23;
     color: #fbfbfb;
     box-shadow: 0px 0px 8px 4px rgba(251, 251, 251, 0.2)
+}
+
+.blog-card:hover {
+    box-shadow: 0px 0px 8px 4px rgba(251, 251, 251, 0.5)
 }
 
 .author-info p {
@@ -85,8 +91,8 @@
 }
 
 .author-photo {
-    width: 140px;
-    height: 140px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     margin-top: 25px;
 }
