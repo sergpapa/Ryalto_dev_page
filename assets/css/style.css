@@ -13,7 +13,7 @@
         text-decoration: underline;
     }
 
-    .subtitle {
+    .subtitle, .gen-text {
         color: #fbfbfb;
     }
 
@@ -21,7 +21,7 @@
         border: 2px solid #fbfbfb;
         background-color: #191B23;
         color: #fbfbfb;
-        min-width: 134px;
+        width: 134px;
     }
 
     .home-page-btn:hover {
@@ -109,4 +109,55 @@
 .read-more-btn:hover {
     background-color: #FFC306;
     color: #191B23;
+}
+
+@media screen and (max-width: 768px) {
+    .blog-card {
+            height: auto;
+            margin-bottom: 25px;
+        }
+    .author-photo {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .blog-card {
+        height: auto;
+        min-height: 415px;
+        margin-bottom: 25px;
+    }
+
+    .author-photo {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+/*------------------------ Meet the Team preview -------*/
+
+.meet-the-team {
+    background-color: #191B23;
+    box-shadow: 1px 0px 20px 20px rgba(255, 195, 6, 0.2);
+}
+
+.meet-the-team .gen-text, .meet-the-team h3 {
+    color:#191B23;
+    font-weight: 600;
+}
+
+.meet-the-team p {
+    max-width: 85%;
+    margin: 0 auto;
+}
+
+
+.meet-the-team-photo {
+    background-image: url("../images/team/meet-the-team.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 0;
+    padding-bottom: 60%;
 }
