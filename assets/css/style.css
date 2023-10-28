@@ -34,8 +34,14 @@
     /*------------header---------*/
 
     .list-inline a i {
-        color: #fbfbfb;
+        color: #FFC306;
         font-size: 18px;
+    }
+
+    .list-inline a i:hover {
+        color: #FF9901;
+        font-size: 20px;
+        
     }
 
     .navbar .nav-link {
@@ -191,6 +197,10 @@
 .meet-the-team p {
     max-width: 67%;
     margin: 0 auto;
+}
+
+.meet-the-team .home-page-btn:hover {
+    background-color: #2799F0;
 }
 
 
