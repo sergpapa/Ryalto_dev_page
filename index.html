@@ -8,9 +8,17 @@
     <meta name="author" content="Sergios Papastergiou">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+    <link rel="icon" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" sizes="512x512" href="/assets/images/favicon/facicon-512x512.png">
 
     <!-- Lottie Animation -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
@@ -82,7 +90,7 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="hero-section container-fluid">
+    <section class="hero-section container-fluid section-margins">
         <div class="background">
             <div class="row">
                 <div class="col-12 text-center gen-margins">
@@ -96,7 +104,7 @@
                         background! Gary, please can you think of some better words to put here!</p>
                 </div>
             </div>
-            <div class="row gen-margins">
+            <div class="row">
                 <div class="col-md-6 text-center text-md-right gen-margins">
                     <button type="button" class="btn home-page-btn">Meet the Team</button>
                 </div>
@@ -108,10 +116,10 @@
     </section>
 
     <!-- Blog Preview -->
-    <section class="container-sm blog-preview-section">
+    <section class="container-sm blog-preview-section section-margins">
         <div class="row">
-            <div class="col-12 text-center gen-margins subheading">
-                <h3>Blog</h3>
+            <div class="col-12 text-center gen-margins">
+                <h3 class="subheading">Blog</h3>
             </div>
         </div>
         <div class="row">
@@ -227,7 +235,7 @@
             
             </div>    
         </div>
-        <div class="row gen-margins">
+        <div class="row">
             <div class="col-12 mt-4 text-right gen-margins">
                 <button class="btn home-page-btn">See All</button>
             </div>
@@ -237,14 +245,15 @@
     <!-- Meet The Team Preview -->
     <section class="container-fluid meet-the-team pt-4">
         <div class="row">
-            <div class="col text-center gen-text d-flex flex-column justify-content-center meet-the-team-text-margin">
-                <h3 class="gen-margins"><span class="rounded">Meet The Team</span></h3>
-                <p class="p-4 gen-margins"><span class="rounded">At Ryalto, we believe that great technology is powered by great people. Get to know the brilliant minds shaping the
+            <div class="col-12 text-center gen-text d-flex flex-column justify-content-center meet-the-team-text-margin">
+                <h3 class="gen-margins subheading"><span class="rounded">Meet The Team</span></h3>
+                <p class="p-4 gen-margins d-none d-sm-inline-block"><span class="rounded">At Ryalto, we believe that great technology is powered by great people. Get to know the brilliant minds shaping the
                 future of our digital solutions. Our team is a diverse blend of talents, united by a shared passion for innovation and a
                 commitment to excellence.</span></p>
-                <p class="p-4 gen-margins"><span class="rounded">Discover the faces driving our mission forward and learn more about the individuals dedicated to creating software
+                <p class="p-4 gen-margins d-none d-sm-inline-block"><span class="rounded">Discover the faces driving our mission forward and learn more about the individuals dedicated to creating software
                 solutions that empower businesses and improve lives. We're not just a team; we're a family of developers, designers, and
                 visionaries working together to make a difference.</span></p>
+                <p class="p-4 gen-margins d-block d-sm-none"><span class="rounded">Click here to meet our Team!</span></p>
                 <button class="btn home-page-btn mx-auto gen-margins">Go to Page</button>
             </div>
         </div>
@@ -254,7 +263,7 @@
     <section class="container-fluid">
         <div class="row">
             <div class="col text-center gen-text mb-4 careers-box mx-md-auto d-flex flex-column justify-content-center rounded">
-                <h3 class="mt-4 mb-4">Careers</h3>
+                <h3 class="mt-4 mb-4 subheading">Careers</h3>
                 <p>Interested in joining the <strong>Ryalto Developer Team</strong>?</p>
                 <p class="gen-margins">Check out all our openings on our Careers page!</p>
                 <button class="btn home-page-btn gen-margins mx-auto">Careers</button>

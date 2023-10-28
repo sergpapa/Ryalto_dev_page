@@ -5,12 +5,20 @@
         font-family: 'Work Sans', sans-serif
     }
     
+    .section-margins {
+        margin-bottom: 50px;
+    }
+    
     .gen-margins {
         margin-bottom: 25px;
     }
 
+    h4 {
+        font-weight: 600;
+    }
+
     .subheading {
-        color: #fbfbfb;
+        font-weight: 600;
         text-decoration: underline;
     }
 
@@ -84,6 +92,11 @@
     .hero-section .background {
         background-color: rgba(25, 27, 35, 0.5);
     }
+
+    .hero-section h1 {
+        font-weight: 600;
+        font-size: 16px;
+    }
     
     .hero-section span {
         font-size: 55px;
@@ -103,6 +116,10 @@
 
 
 /* ----------------------------- Blog Preview -------*/
+
+.blog-preview-section .subheading {
+    color: #fbfbfb;
+}
 
 .blog-card {
     border-radius: 2%;
@@ -169,25 +186,29 @@
 /*------------------------ Meet the Team preview -------*/
 
 .meet-the-team {
+    border: 2px outset rgba(255, 195, 6, 0.2);
     background-color: #191B23;
     box-shadow: 1px 0px 30px 30px rgba(255, 195, 6, 0.2);
     background-image: url("../images/team/meet-the-team.webp");
+    width: 100%;
     max-width: 1900px;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
-    height: 0;
-    padding-bottom: 60%;
+    background-position: bottom;
+    height: auto;
+    
 }
 
 .meet-the-team-text-margin {
     margin-top: 1.5rem;
     
+    
 }
 
-.meet-the-team .gen-text, .meet-the-team h3 {
+.meet-the-team .gen-text {
     color:#191B23;
-    font-weight: 600;
+    font-weight: 400;
+    font-size: 18px;
 }
 
 .meet-the-team span {
@@ -203,15 +224,20 @@
     background-color: #2799F0;
 }
 
-
-@media screen and (max-width: 767px) {
+@media screen and (min-width: 1024px) {
     .meet-the-team {
-        background-image: none;
-        background: rgb(255, 195, 6);
-        background: linear-gradient(0deg, rgba(255, 195, 6, 1) 15%, rgba(25, 27, 35, 1) 100%);
-        height: auto;
-        padding-bottom: 0;
+        height: 800px;
     }
+}
+
+@media screen and (max-width: 425px) {
+    .meet-the-team {
+            background-image: none;
+            background: rgb(255, 195, 6);
+            background: linear-gradient(0deg, rgba(255, 195, 6, 1) 15%, rgba(25, 27, 35, 1) 100%);
+            height: auto;
+            padding-bottom: 0;
+        }
 
     .meet-the-team {
         background-color: #191B23;
@@ -219,13 +245,14 @@
     }
 
     .meet-the-team-text-margin {
-        margin-top: 75px;
+        margin-top: 105px;
     }
 
     .meet-the-team span {
         background: none;
     }
 }
+
 
 /*---------------------- Careers ------------------*/
 
