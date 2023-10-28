@@ -2,6 +2,7 @@
     
     body {
         background-color: #191B23;
+        font-family: 'Work Sans', sans-serif
     }
     
     .gen-margins {
@@ -21,7 +22,7 @@
         border: 2px solid #fbfbfb;
         background-color: #191B23;
         color: #fbfbfb;
-        width: 134px;
+        width: 150px;
     }
 
     .home-page-btn:hover {
@@ -30,7 +31,28 @@
         color: #191B23;
     }
 
-    /* ------- hero section ------ */
+    /*------------header---------*/
+
+    .list-inline a i {
+        color: #fbfbfb;
+        font-size: 18px;
+    }
+
+    .navbar .nav-link {
+        color: #FFC306;
+        font-size: 18px;
+    }
+
+    .navbar .nav-link:hover {
+        text-decoration: 2px solid underline #FFC306;
+    }
+
+    .navbar .active {
+        text-decoration: 2px solid underline #FFC306;
+    }
+
+
+    /* ------- lottie animation ------ */
     .lottie-bg {
         position: fixed;
         opacity: 0.8;
@@ -45,6 +67,8 @@
         width: 100vw;
         height: 100vh;
     }
+
+    /* ------- hero section ------ */
 
     .hero-section {
         z-index: 1;
@@ -99,6 +123,7 @@
 
 .blog-post-preview {
     margin: 12px;
+    font-size: 14px;
 }
 
 .read-more-btn {
