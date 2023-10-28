@@ -141,6 +141,7 @@
     background-color: #191B23;
     box-shadow: 1px 0px 30px 30px rgba(255, 195, 6, 0.2);
     background-image: url("../images/team/meet-the-team.webp");
+    max-width: 1900px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -148,7 +149,7 @@
     padding-bottom: 60%;
 }
 
-.meet-the-team-text {
+.meet-the-team-text-margin {
     margin-top: 1.5rem;
     
 }
@@ -163,7 +164,7 @@
 }
 
 .meet-the-team p {
-    max-width: 85%;
+    max-width: 67%;
     margin: 0 auto;
 }
 
@@ -182,11 +183,47 @@
         box-shadow: none;
     }
 
-    .meet-the-team-text {
+    .meet-the-team-text-margin {
         margin-top: 75px;
     }
 
     .meet-the-team span {
         background: none;
     }
+}
+
+/*---------------------- Careers ------------------*/
+
+.careers-box {
+    margin-top: 75px;
+    background: rgba(39, 153, 240, 0.8);
+    color: #191B23;
+    max-width: 60%;
+    min-height: 300px;
+    height: auto;
+}
+
+.careers-box .home-page-btn {
+    background-color: transparent;
+    color: #191B23;
+    border-color: #191B23;
+}
+
+.careers-box .home-page-btn:hover {
+    background-color: #FFC306;
+    color: #191B23;
+    border-color: #191B23;
+}
+
+@media screen and (max-width: 767px) {
+    .careers-box {
+        max-width: 100%;
+    }
+
+}
+
+/*------------ footer ----------*/
+
+.bg-color-footer {
+    background-color: #191B23;
 }
