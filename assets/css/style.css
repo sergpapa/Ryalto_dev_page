@@ -139,12 +139,27 @@
 
 .meet-the-team {
     background-color: #191B23;
-    box-shadow: 1px 0px 20px 20px rgba(255, 195, 6, 0.2);
+    box-shadow: 1px 0px 30px 30px rgba(255, 195, 6, 0.2);
+    background-image: url("../images/team/meet-the-team.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 0;
+    padding-bottom: 60%;
+}
+
+.meet-the-team-text {
+    margin-top: 1.5rem;
+    
 }
 
 .meet-the-team .gen-text, .meet-the-team h3 {
     color:#191B23;
     font-weight: 600;
+}
+
+.meet-the-team span {
+    background-color: rgba(251, 251, 251, 0.4);
 }
 
 .meet-the-team p {
@@ -153,11 +168,25 @@
 }
 
 
-.meet-the-team-photo {
-    background-image: url("../images/team/meet-the-team.webp");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 0;
-    padding-bottom: 60%;
+@media screen and (max-width: 767px) {
+    .meet-the-team {
+        background-image: none;
+        background: rgb(255, 195, 6);
+        background: linear-gradient(0deg, rgba(255, 195, 6, 1) 15%, rgba(25, 27, 35, 1) 100%);
+        height: auto;
+        padding-bottom: 0;
+    }
+
+    .meet-the-team {
+        background-color: #191B23;
+        box-shadow: none;
+    }
+
+    .meet-the-team-text {
+        margin-top: 75px;
+    }
+
+    .meet-the-team span {
+        background: none;
+    }
 }
