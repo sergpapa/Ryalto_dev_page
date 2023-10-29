@@ -286,6 +286,83 @@
 
 /*------------ footer ----------*/
 
+footer {
+    position: absolute;
+}
+
 .bg-color-footer {
     background-color: #191B23;
 }
+
+
+/*------------ Blogs-Page ----------*/
+
+.blogs-page {
+    position: relative;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+#blog-post {
+    color: #FF9901;
+    width: 90%;
+    height: auto;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0px 0px 8px 4px rgba(255, 153, 1, 0.2);
+}
+
+#blog-post:hover {
+    width: 100%;
+    color: #fbfbfb;
+    box-shadow: 0px 0px 8px 4px rgba(255, 153, 1, 0.4);;
+}
+
+#blog-post:hover .not-displayed {
+    display: block;
+}
+
+.not-displayed {
+    display: none;
+}
+
+#blog-post .author-photo {
+    width: 65px;
+    height: 65px;
+}
+
+.blogs-page-button {
+    background-color: #FFC306;
+    color:#191B23;
+}
+
+.blogs-page-button:hover {
+    background-color: #FF9901;
+    color: #191B23;
+}
+
+@media screen and (max-width: 992px) {
+    .grid-container {
+        grid-template-columns: auto auto auto;
+    }
+
+}
+
+@media screen and (max-width: 767px) {
+    .grid-container {
+        grid-template-columns: auto auto;
+    }
+
+}
+
+@media screen and (max-width: 576px) {
+    .grid-container {
+        grid-template-columns: auto;
+    }
+
+}
+
+
