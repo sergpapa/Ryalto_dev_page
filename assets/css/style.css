@@ -78,7 +78,7 @@
     }
 
     .lottie-animation {
-        width: 100vw;
+        width: 110vw;     /* 110vw resolved an issue where the bg did not cover the whole screen in high resolution */
         height: 100vh;
     }
 
