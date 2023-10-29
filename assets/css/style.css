@@ -307,7 +307,7 @@ footer {
 }
 
 #blog-post {
-    color: #FF9901;
+    color: #fbfbfb;
     width: 90%;
     height: auto;
     padding-bottom: 25px;
@@ -317,8 +317,11 @@ footer {
 
 #blog-post:hover {
     width: 100%;
-    color: #fbfbfb;
     box-shadow: 0px 0px 8px 4px rgba(255, 153, 1, 0.4);;
+}
+
+#blog-post .author-info {
+    color:#FF9901;
 }
 
 #blog-post:hover .not-displayed {
