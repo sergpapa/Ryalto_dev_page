@@ -389,13 +389,29 @@ footer {
 }
 
 .blog-full h5 {
+    font-weight: 500;
+    font-size: 26px;
+    margin-top: 10px;
+}
+
+.blog-full .author-info h5 {
     margin-bottom: 0;
-    margin-top: 10px;;
+    margin-top: 10px;
 }
 
 .blog-full .author-info {
     background: rgba(251, 251, 251, 0.2);
     margin-bottom: 25px;
+}
+
+.quote {
+    font-style: italic;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.in-blog-content {
+    width: inherit;
 }
 
 
@@ -426,7 +442,7 @@ footer {
     overflow: auto;
 }
 
-.token-js-operator {
+.token-js-operator, .token-ruby-operator {
     color: #67cdcc;
 }
 
@@ -434,11 +450,11 @@ footer {
     color: #f08d49;
 }
 
-.token-js-keyword {
+.token-js-keyword, .token-ruby-tag {
     color: #cc99cd;
 }
 
-.token-js-string {
+.token-js-string, .token-ruby-string {
     color: #7ec699;
 }
 
@@ -454,7 +470,7 @@ footer {
     color: #cc99cd;
 }
 
-.token-css-property {
+.token-css-property, .token-ruby-symbol {
     color: #f8c555;
 }
 
@@ -465,6 +481,7 @@ footer {
 .token-css-punctuation {
     color: #ccc;
 }
+ 
 
 /* ------------- Previous/Next Buttons --------- */
 
