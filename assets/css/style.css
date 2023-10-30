@@ -38,19 +38,19 @@
         background-color: #FFC306;
         color: #191B23;
     }
-
-    /*------------header---------*/
-
-    .list-inline a i {
+    
+    .social {
         color: #FFC306;
         font-size: 18px;
     }
 
-    .list-inline a i:hover {
+    .social:hover {
         color: #FF9901;
         font-size: 20px;
-        
     }
+
+
+    /*------------header---------*/
 
     .navbar .nav-link {
         color: #FFC306;
@@ -373,6 +373,94 @@ footer {
         grid-template-columns: 100%;
     }
 
+}
+
+/*--------------- Blog Full ------ */
+
+.blog-full {
+    width: 60%;
+    background: rgba(25, 27, 35, 0.9);
+}
+
+.blog-full h3 {
+    font-size: 34px;
+    font-weight: 600;
+    margin: 25px 0 25px 0;
+}
+
+.blog-full h5 {
+    margin-bottom: 0;
+    margin-top: 10px;;
+}
+
+.blog-full .author-info {
+    background: rgba(251, 251, 251, 0.2);
+    margin-bottom: 25px;
+}
+
+
+@media screen and (min-width: 1200px) {
+    .blog-full {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .blog-full {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .blog-full {
+            width: 90%;
+        }
+}
+
+.blog-code-snippet {
+    background: #2d2d2d;
+    color: #fbfbfb;
+    overflow: auto;
+}
+
+.token-js-operator {
+    color: #67cdcc;
+}
+
+.token-js-function {
+    color: #f08d49;
+}
+
+.token-js-keyword {
+    color: #cc99cd;
+}
+
+.token-js-string {
+    color: #7ec699;
+}
+
+.token-js-comment {
+    color: #999;
+}
+
+.token-js-punctuation {
+    color: #ccc;
+}
+
+.token-css-selector {
+    color: #cc99cd;
+}
+
+.token-css-property {
+    color: #f8c555;
+}
+
+.token-css-variable {
+    color: #7ec699;
+}
+
+.token-css-punctuation {
+    color: #ccc;
 }
 
 
