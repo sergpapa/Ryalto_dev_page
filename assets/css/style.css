@@ -412,6 +412,7 @@ footer {
 
 .in-blog-content {
     width: inherit;
+    object-fit: contain;
 }
 
 
@@ -450,7 +451,7 @@ footer {
     color: #f08d49;
 }
 
-.token-js-keyword, .token-ruby-tag {
+.token-js-keyword, .token-ruby-keyword {
     color: #cc99cd;
 }
 
@@ -458,7 +459,7 @@ footer {
     color: #7ec699;
 }
 
-.token-js-comment {
+.token-js-comment, .token-ruby-comment {
     color: #999;
 }
 
@@ -481,7 +482,10 @@ footer {
 .token-css-punctuation {
     color: #ccc;
 }
- 
+
+.token-ruby-tag {
+    color: #e2777a;
+}
 
 /* ------------- Previous/Next Buttons --------- */
 
