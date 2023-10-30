@@ -26,6 +26,7 @@
 
     <!-- favicon here-->
     <script src="https://kit.fontawesome.com/0d939d98c3.js" crossorigin="anonymous"></script>
+    <link href="../assets/css/prism.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css" type="text/css">
     <title>Ryalto Developer Page</title>
 </head>
@@ -140,30 +141,204 @@
                         <h5>A new way for Users <—> Organisations</h5>
                         <p>When thinking about our rebuild I wanted to model our system more closely to the real world. A user has many
                         organisations and an organisation has many users. This was done through a user-organisation model.</p>
-                        <pre class="blog-code-snippet" tabindex="0"><code><span class="token-ruby-comment"># app/models/user.rb</span>
-                        <span class="token-ruby-comment"># User Model</span>
-                        <span class="token-ruby-keyword">class</span> User <span class="token-ruby-operator">&lt;</span> ApplicationRecord
-                            has_many <span class="token-ruby-symbol">:user_organisations</span>
-                            accepts_nested_attributes_for <span class="token-ruby-symbol">:user_organisations</span><span class="token-ruby-punctuation">,</span> <span class="token-ruby-symbol">allow_destroy</span><span class="token-ruby-operator">:</span> <span class="token-ruby-boolean">true</span>
-                            has_many <span class="token-ruby-symbol">:organisations</span><span class="token-ruby-punctuation">,</span> <span class="token-ruby-symbol">through</span><span class="token-ruby-operator">:</span> <span class="token-ruby-symbol">:user_organisations</span>
-                        <span class="token-ruby-keyword">end</span>
+                        <pre class="highlight language-ruby" tabindex="0"><code class="language-ruby"><span class="token comment"># app/models/user.rb</span>
+                        <span class="token comment"># User Model</span>
+                        <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token operator">&lt;</span> ApplicationRecord
+                          has_many <span class="token symbol">:user_organisations</span>
+                          accepts_nested_attributes_for <span class="token symbol">:user_organisations</span><span class="token punctuation">,</span> <span class="token symbol">allow_destroy</span><span class="token operator">:</span> <span class="token boolean">true</span>
+                          has_many <span class="token symbol">:organisations</span><span class="token punctuation">,</span> <span class="token symbol">through</span><span class="token operator">:</span> <span class="token symbol">:user_organisations</span>
+                        <span class="token keyword">end</span>
                         
-                        <span class="token-ruby-comment"># app/models/organisation.rb</span>
-                        <span class="token-ruby-comment"># Organisation Model</span>
-                        <span class="token-ruby-keyword">class</span> <span class="token-ruby-class-name">Organisation</span> <span class="token-ruby-operator">&lt;</span> ApplicationRecord
-                            has_many <span class="token-ruby-symbol">:user_organisations</span>
-                            has_many <span class="token-ruby-symbol">:users</span><span class="token-ruby-punctuation">,</span> <span class="token-ruby-symbol">through</span><span class="token-ruby-operator">:</span> <span class="token-ruby-symbol">:user_organisations</span>
-                        <span class="token-ruby-keyword">end</span>
+                        <span class="token comment"># app/models/organisation.rb</span>
+                        <span class="token comment"># Organisation Model</span>
+                        <span class="token keyword">class</span> <span class="token class-name">Organisation</span> <span class="token operator">&lt;</span> ApplicationRecord
+                          has_many <span class="token symbol">:user_organisations</span>
+                          has_many <span class="token symbol">:users</span><span class="token punctuation">,</span> <span class="token symbol">through</span><span class="token operator">:</span> <span class="token symbol">:user_organisations</span>
+                        <span class="token keyword">end</span>
                         
-                        <span class="token-ruby-comment"># app/models/user_organisation.rb</span>
-                        <span class="token-ruby-comment"># UserOrganisation Model</span>
-                        <span class="token-ruby-comment"># This is the model which connects users to organisations.</span>
-                        <span class="token-ruby-keyword">class</span> <span class="token-ruby-class-name">UserOrganisation</span> <span class="token-ruby-operator">&lt;</span> ApplicationRecord
-                            belongs_to <span class="token-ruby-symbol">:user</span>
-                            belongs_to <span class="token-ruby-symbol">:organisation</span>
-                        <span class="token-ruby-keyword">end</span>
+                        <span class="token comment"># app/models/user_organisation.rb</span>
+                        <span class="token comment"># UserOrganisation Model</span>
+                        <span class="token comment"># This is the model which connects users to organisations.</span>
+                        <span class="token keyword">class</span> <span class="token class-name">UserOrganisation</span> <span class="token operator">&lt;</span> ApplicationRecord
+                          belongs_to <span class="token symbol">:user</span>
+                          belongs_to <span class="token symbol">:organisation</span>
+                        <span class="token keyword">end</span>
                         </code></pre>
+                        <p>With this approach, the UserOrganisation model stores all the information about a users relationship with a particular
+                        organisation. Their organisation verification status, whether their account is enabled, any elevated privileges that
+                        they have and which is their “current” organisation.</p>
+                        <p>The current organisation is important, as we want to scope the users activity, and pretty much everything else they see
+                        in the application based on that “current” organisation.</p>
+                        <p>he big thing that is missing from this proper validation that a user must have exactly one organisation as their current
+                        organisation.</p>
+                        <p>We get the user’s current organisation by calling “find_by” on the user organisation. Find by is great here, as if there
+                        should end up being multiple organisations with the “current” boolean set to true, then it will return the first one
+                        only.</p>
+                        <pre class="highlight language-ruby" tabindex="0"><code class="language-ruby"><span class="token comment"># app/models/user.rb</span>
+                        <span class="token comment"># User Model</span>
+                        <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">current_user_organisation</span></span>
+                          user_organisations<span class="token punctuation">.</span>find_by<span class="token punctuation">(</span><span class="token symbol">current</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+                        <span class="token keyword">end</span>
+                        </code></pre>
+                        <p>Then we switch organisation by first setting all of the current booleans to false, and updating the one that the user is
+                        switching to.</p>
+                        <pre class="highlight language-ruby" tabindex="0"><code class="language-ruby"><span class="token comment"># app/models/user.rb</span>
+                        <span class="token comment"># User Model</span>
+                        <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">switch_organisation</span></span><span class="token punctuation">(</span>organisation<span class="token punctuation">)</span>
+                          user_organisations<span class="token punctuation">.</span>update_all<span class="token punctuation">(</span><span class="token symbol">current</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
+                          user_organisations<span class="token punctuation">.</span>find_by<span class="token punctuation">(</span><span class="token symbol">organisation</span><span class="token operator">:</span><span class="token punctuation">)</span><span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token symbol">current</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+                        <span class="token keyword">end</span>
+                        </code></pre>
+                        <p>To call this method we have a route and controller action.</p>
+                        <pre class="highlight language-ruby" tabindex="0"><code class="language-ruby"><span class="token comment"># config/routes.rb</span>
+                          authenticated <span class="token symbol">:user</span> <span class="token keyword">do</span>
+                              <span class="token comment"># ...</span>
+                            devise_scope <span class="token symbol">:user</span> <span class="token keyword">do</span>
+                              patch <span class="token string-literal"><span class="token string">'/switch_organisation/:organisation'</span></span><span class="token punctuation">,</span> <span class="token symbol">to</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">'users/registrations#switch_organisation'</span></span><span class="token punctuation">,</span> <span class="token symbol">as</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">'switch_organisation'</span></span>
+                            <span class="token keyword">end</span>
+                          <span class="token keyword">end</span>
                         
+                        <span class="token keyword">module</span> <span class="token class-name">Users</span>
+                          <span class="token comment"># app/controllers/users/registrations_controller.rb</span>
+                          <span class="token keyword">class</span> <span class="token class-name">RegistrationsController</span> <span class="token operator">&lt;</span> Devise<span class="token double-colon punctuation">::</span>RegistrationsController
+                            <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">switch_organisation</span></span>
+                              current_user<span class="token punctuation">.</span>switch_organisation<span class="token punctuation">(</span>params<span class="token punctuation">[</span><span class="token symbol">:organisation</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                              redirect_back<span class="token punctuation">(</span><span class="token symbol">fallback_location</span><span class="token operator">:</span> root_path<span class="token punctuation">)</span>
+                            <span class="token keyword">end</span>
+                          <span class="token keyword">end</span>
+                        <span class="token keyword">end</span>
+                        
+                        </code></pre>
+                        <pre class="highlight language-erb" tabindex="0"><code class="language-erb"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span><span class="token punctuation">&gt;</span></span>Switch Organisation<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">&gt;</span></span>
+                        <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"> <span class="token variable">@organisations</span><span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>org<span class="token operator">|</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                          <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"> <span class="token keyword">next</span> <span class="token keyword">if</span> org<span class="token punctuation">.</span>current </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        
+                          <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> button_to org<span class="token punctuation">.</span>organisation<span class="token punctuation">.</span>name<span class="token punctuation">,</span> switch_organisation_path<span class="token punctuation">(</span>org<span class="token punctuation">.</span>organisation<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token symbol">method</span><span class="token operator">:</span> <span class="token symbol">:patch</span><span class="token punctuation">,</span> <span class="token symbol">class</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">'btn link-warning'</span></span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"> <span class="token keyword">end</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        </code></pre>
+                        <h5>Managing Authorisation for Elevated Privileges</h5>
+                        <p>Ryalto is a multi-functional app. For each section of the app, an organisation might want to set one or many users to be
+                        able to manage it, and one user might need privileges for multiple sections of the app. The simplest approach was to
+                        store a boolean in the UserOrganisation table for each admin area.</p>
+                        <pre class="highlight language-ruby" tabindex="0"><code class="language-ruby">      t<span class="token punctuation">.</span>boolean <span class="token symbol">:organisation_admin</span><span class="token punctuation">,</span> <span class="token symbol">null</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token symbol">default</span><span class="token operator">:</span> <span class="token boolean">false</span>
+                              t<span class="token punctuation">.</span>boolean <span class="token symbol">:news_feed_admin</span><span class="token punctuation">,</span> <span class="token symbol">null</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token symbol">default</span><span class="token operator">:</span> <span class="token boolean">false</span>
+                              t<span class="token punctuation">.</span>boolean <span class="token symbol">:shift_admin</span><span class="token punctuation">,</span> <span class="token symbol">null</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token symbol">default</span><span class="token operator">:</span> <span class="token boolean">false</span>
+                        </code></pre>
+                        <p>We didn’t want to create a separate admin user type, in order to keep things as close as possible to the real world. A
+                        user can have some admin rights at one organisation, but be a part of a separate organisation where they don’t have any
+                        elevated privileges. We didn’t want users to have to log out of their user account and log back in as an admin.</p>
+                        <p>The user model can return whether or not a user is particular admin for their current organisation.</p>
+                        <pre class="highlight language-ruby" tabindex="0"><code class="language-ruby"><span class="token comment"># app/models/user.rb</span>
+                        <span class="token comment"># User Model</span>
+                        <span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token operator">&lt;</span> ApplicationRecord
+                          has_many <span class="token symbol">:user_organisations</span>
+                          accepts_nested_attributes_for <span class="token symbol">:user_organisations</span><span class="token punctuation">,</span> <span class="token symbol">allow_destroy</span><span class="token operator">:</span> <span class="token boolean">true</span>
+                          has_many <span class="token symbol">:organisations</span><span class="token punctuation">,</span> <span class="token symbol">through</span><span class="token operator">:</span> <span class="token symbol">:user_organisations</span>
+                        
+                          <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">organisation_admin</span></span><span class="token operator">?</span>
+                            current_user_organisation<span class="token punctuation">.</span>organisation_admin
+                          <span class="token keyword">end</span>
+                        
+                          <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">shift_admin</span></span><span class="token operator">?</span>
+                            current_user_organisation<span class="token punctuation">.</span>shift_admin
+                          <span class="token keyword">end</span>
+                        
+                          <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">news_feed_admin</span></span><span class="token operator">?</span>
+                            current_user_organisation<span class="token punctuation">.</span>news_feed_admin
+                          <span class="token keyword">end</span>
+                        
+                          <span class="token keyword">private</span>
+                        
+                          <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">current_user_organisation</span></span>
+                            user_organisations<span class="token punctuation">.</span>find_by<span class="token punctuation">(</span><span class="token symbol">current</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+                          <span class="token keyword">end</span>
+                        <span class="token keyword">end</span>
+                        
+                        </code></pre>
+                        <p>There were a few different options for how to manage this authorisation for the controller actions. We’re scoping the
+                        admin actions under an admin module, which a separate controller for each set of admin functionality. There were two
+                        initial approaches considered: verify authorisation in each controller, or extract it to the application controller.</p>
+                        <p>In each controller it could look like this:</p>
+                        <pre class="highlight language-ruby" tabindex="0"><code class="language-ruby"><span class="token keyword">module</span> <span class="token class-name">Admin</span>
+                          <span class="token comment"># app/controllers/admin/organisations_controller.rb</span>
+                          <span class="token keyword">class</span> <span class="token class-name">OrganisationsController</span> <span class="token operator">&lt;</span> ApplicationController
+                        
+                              <span class="token comment"># methods</span>
+                        
+                               <span class="token keyword">private</span>
+                        
+                                <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">authorise_admin</span></span>
+                                    <span class="token keyword">return</span> <span class="token keyword">if</span> current_user<span class="token punctuation">.</span>organisation_admin<span class="token operator">?</span>
+                        
+                                    redirect_back<span class="token punctuation">(</span><span class="token symbol">fallback_location</span><span class="token operator">:</span> root_path<span class="token punctuation">,</span> <span class="token symbol">flash</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token symbol">error</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">"You don't have permission to do that action."</span></span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+                                <span class="token keyword">end</span>
+                            <span class="token keyword">end</span>
+                        <span class="token keyword">end</span>
+                        </code></pre>
+                        <p>Fairly simple, fairly clean, but it doesn’t feel very DRY.</p>
+                        <p>In the application controller:</p>
+                        <pre class="highlight language-ruby" tabindex="0"><code class="language-ruby"><span class="token keyword">module</span> <span class="token class-name">Admin</span>
+                            <span class="token comment"># app/controllers/admin/organisations_controller.rb</span>
+                            <span class="token keyword">class</span> <span class="token class-name">OrganisationsController</span> <span class="token operator">&lt;</span> ApplicationController
+                                before_action <span class="token symbol">:authorise</span>
+                        
+                                <span class="token comment"># methods</span>
+                        
+                                <span class="token keyword">private</span>
+                        
+                                <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">authorise</span></span>
+                                    authorise_admin<span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"organisation"</span></span><span class="token punctuation">)</span>
+                                <span class="token keyword">end</span>
+                            <span class="token keyword">end</span>
+                        <span class="token keyword">end</span>
+                        
+                        <span class="token comment"># app/controllers/application_controller.rb</span>
+                        <span class="token keyword">class</span> <span class="token class-name">ApplicationController</span> <span class="token operator">&lt;</span> ActionController<span class="token double-colon punctuation">::</span>Base
+                            <span class="token comment"># other stuff</span>
+                        
+                            <span class="token keyword">protected</span>
+                        
+                            <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">authorize_admin</span></span><span class="token punctuation">(</span>type<span class="token punctuation">)</span>
+                                <span class="token keyword">case</span> type
+                                <span class="token keyword">when</span> <span class="token string-literal"><span class="token string">"organisation"</span></span>
+                                  <span class="token keyword">return</span> <span class="token keyword">if</span> current_user<span class="token punctuation">.</span>admin<span class="token operator">?</span>
+                                <span class="token keyword">when</span> <span class="token string-literal"><span class="token string">"news_feed"</span></span>
+                                  <span class="token keyword">return</span> <span class="token keyword">if</span> current_user<span class="token punctuation">.</span>news_feed_admin<span class="token operator">?</span>
+                                <span class="token keyword">when</span> <span class="token string-literal"><span class="token string">"shift"</span></span>
+                                  <span class="token keyword">return</span> <span class="token keyword">if</span> current_user<span class="token punctuation">.</span>shift_admin<span class="token operator">?</span>
+                                <span class="token keyword">end</span>
+                        
+                            	redirect_back<span class="token punctuation">(</span><span class="token symbol">fallback_location</span><span class="token operator">:</span> root_path<span class="token punctuation">,</span> <span class="token symbol">flash</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token symbol">error</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">"You don't have permission to do that action."</span></span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+                          <span class="token keyword">end</span>
+                        <span class="token keyword">end</span>
+                        </code></pre>
+                        <p>This feels better, but is quite verbose. The big draw back with this those is that you end up including the admin
+                        authorisation in every area of the app - which we don’t necessarily want. It’s also muddling the separation of concerns
+                        slightly.</p>
+                        <p>Another option would be to have each specific admin controller inherit from a parent admin controller which handles the
+                        authorisation and any other shared methods. This felt like a good approach, but then suddenly:</p>
+                        <h5>Helpers to the Rescue!</h5>
+                        <p>Extracting the authorisation to a helper allows use to include it where ever we needed, keep things DRY and doesn’t
+                        muddle SRP.</p>
+                        <p>The other really cool thing we’ve done is writing a single method for all of the separate authorisations. <strong>The limitation
+                        is that the name of the admin method on the user model must be the singular version of the controller that it’s being
+                        called from.</strong>The This is what we should be trying to do anyway to keep things readable.</p>
+                        <p>So now, in each of our admin controllers we just <code class="highlighter-rouge language-plaintext">include AdminHelper</code> and the admin helper is just this:</p>
+                        <pre class="highlight language-ruby" tabindex="0"><code class="language-ruby"><span class="token comment"># app/helpers/admin_helper.rb</span>
+                        <span class="token comment"># Methods which are shared between admin controllers</span>
+                        <span class="token keyword">module</span> <span class="token class-name">AdminHelper</span>
+                          <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">authorise_admin</span></span>
+                            <span class="token keyword">return</span> <span class="token keyword">if</span> current_user<span class="token punctuation">.</span>public_send<span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"</span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">controller_name<span class="token punctuation">.</span>singularize</span><span class="token delimiter punctuation">}</span></span><span class="token string">_admin?"</span></span><span class="token punctuation">)</span>
+                        
+                            redirect_back<span class="token punctuation">(</span><span class="token symbol">fallback_location</span><span class="token operator">:</span> root_path<span class="token punctuation">,</span> <span class="token symbol">flash</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token symbol">error</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">"You don't have permission to do that action."</span></span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+                          <span class="token keyword">end</span>
+                        <span class="token keyword">end</span>
+                        </code></pre>
+                        <h5>Conclusion</h5>
+                        <p>The solution we’ve ended up with relies on a bit of extra convention. Future developers working on this section have to
+                        be considered with their naming conventions, but we have a solution that is DRY, maintainable and extensible! Exactly
+                        what we’re looking for!</p>
+                        <p>Can you think of any way we could have implemented this better?</p>
                     </div>
                 </div>
             </div>
@@ -173,7 +348,7 @@
     <!-- Previous/Next Buttons -->
     <div class="container mt-5">
         <div class="row">
-            <div class="col-6 d-none text-center ">
+            <div class="col-6 text-center ">
                 <button class="btn home-page-btn">Previous</button>
             </div>
             <div class="col-6 text-center">
@@ -198,6 +373,7 @@
             </div>
         </div>
     </footer>
+    <script src="../assets/js/prism.js"></script>
 </body>
 
 </html>

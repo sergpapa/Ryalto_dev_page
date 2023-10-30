@@ -193,37 +193,55 @@
                         <h6>Code</h6>
                         <p><strong>Parent View</strong></p>
                         <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/pages/subscription.html.erb">app/views/pages/subscription.html.erb</a>
-                        <pre class="blog-code-snippet" tabindex="0">
-                            <code><span>&lt;%= render <span class="token-ruby-string">'subscription_interest_toggle'</span>%&gt;</code></pre>
+                        <pre class="language-erb"
+                            tabindex="0"><code class="language-erb"><span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> render <span class="token string-literal"><span class="token string">'subscription_interest_toggle'</span></span> </span><span class="token delimiter punctuation">%&gt;</span></span></code></pre>
                         <p><strong>Button Partial</strong></p>
                         <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/pages/_subscription_interest_toggle.html.erb">app/views/pages/_subscription_interest_toggle.html.erb</a>
-                        <pre class="blog-code-snippet" tabindex="0">
-                            <code class="token-ruby"><span>&lt;<span class="token-ruby-tag">div id</span>>="<span class="token-ruby-string">subscription_interest_toggle</span>"</span>
-                                <span>  <% <span class="token-ruby-keyword">if</span> current_user<span class="token-ruby-operator">&.</span>subscription_interest %></span>
-                                <span>    <%= button_to update_subscription_interest_path,</span>
-                                <span>            <span class="token-ruby-symbol">method</span><span class="token-ruby-operator">:</span> <span class="token-ruby-symbol">:patch</span>,</span>
-                                <span>            <span class="token-ruby-symbol">params</span><span class="token-ruby-operator">:</span> { <span class="token-ruby-symbol">user</span><span class="token-ruby-operator">:</span> { <span class="token-ruby-symbol">subscription_interest</span><span class="token-ruby-operator">:</span> false } },</span>
-                                <span>            <span class="token-ruby-symbol">class</span><span class="token-ruby-operator">:</span> <span class="token-ruby-string">"btn btn-complementary"</span> <span class="token-ruby-keyword">do</span> %></span>
-                                <span>      I'm not interested anymore</span>
-                                <span>    <% <span class="token-ruby-keyword">end</span> %></span>
-                                <span>  <% <span class="token-ruby-keyword">else</span> %></span>
-                                <span>    <%= button_to update_subscription_interest_path,</span>
-                                <span>            <span class="token-ruby-symbol">method</span><span class="token-ruby-operator">:</span> <span class="token-ruby-symbol">:patch</span>,</span>
-                                <span>            <span class="token-ruby-symbol">params</span><span class="token-ruby-operator">:</span> { <span class="token-ruby-symbol">user</span><span class="token-ruby-operator">:</span> { <span class="token-ruby-symbol">subscription_interest</span><span class="token-ruby-operator">:</span> true } },</span>
-                                <span>            <span class="token-ruby-symbol">class</span><span class="token-ruby-operator">:</span> <span class="token-ruby-string">"btn btn-complementary"</span> <span class="token-ruby-keyword">do</span> %></span>
-                                <span>      I'm In!</span>
-                                <span>    <% <span class="token-ruby-keyword">end</span> %></span>
-                                <span>  <% <span class="token-ruby-keyword">end</span> %></span>
-                                <span>&lt;/<span class="token-ruby-tag">div</span>></span></code></pre>
+                        <pre class="language-erb" tabindex="0"><code class="language-erb"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>subscription_interest_toggle<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+                          <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"> <span class="token keyword">if</span> current_user<span class="token operator">&amp;.</span>subscription_interest </span><span class="token delimiter punctuation">%&gt;</span></span>
+                            <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> button_to update_subscription_interest_path<span class="token punctuation">,</span>
+                                          <span class="token symbol">method</span><span class="token operator">:</span> <span class="token symbol">:patch</span><span class="token punctuation">,</span>
+                                          <span class="token symbol">params</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token symbol">user</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token symbol">subscription_interest</span><span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                                          <span class="token symbol">class</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">"btn btn-complementary"</span></span> <span class="token keyword">do</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                              I'm not interested anymore
+                            <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"> <span class="token keyword">end</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                          <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"> <span class="token keyword">else</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                            <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> button_to update_subscription_interest_path<span class="token punctuation">,</span>
+                                          <span class="token symbol">method</span><span class="token operator">:</span> <span class="token symbol">:patch</span><span class="token punctuation">,</span>
+                                          <span class="token symbol">params</span><span class="token operator">:</span> <span class="token punctuation">{</span><span class="token symbol">user</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token symbol">subscription_interest</span><span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+                                          <span class="token symbol">class</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">"btn btn-complementary"</span></span> <span class="token keyword">do</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                              I'm In!
+                            <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"> <span class="token keyword">end</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                          <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"> <span class="token keyword">end</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+                        </code></pre>
                         <p><strong>Controller (excerpt)</strong></p>
                         <a href="https://github.com/phil-6/dailybrew/blob/main/app/controllers/registrations_controller.erb">app/controllers/registrations_controller.erb</a>
                         
-                        <pre></pre>
+                        <pre class="language-ruby" tabindex="0"><code class="language-ruby"><span class="token comment"># app/controllers/registrations_controller.rb</span>
+                        <span class="token keyword">class</span> <span class="token class-name">RegistrationsController</span> <span class="token operator">&lt;</span> Devise<span class="token double-colon punctuation">::</span>RegistrationsController
+                          <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">update_subscription_interest</span></span>
+                            current_user<span class="token punctuation">.</span>update<span class="token operator">!</span><span class="token punctuation">(</span>subscription_interest_params<span class="token punctuation">)</span>
+                        
+                            respond_to <span class="token keyword">do</span> <span class="token operator">|</span>format<span class="token operator">|</span>
+                              format<span class="token punctuation">.</span>turbo_stream <span class="token keyword">do</span>
+                                render turbo_stream<span class="token operator">:</span> turbo_stream<span class="token punctuation">.</span>replace<span class="token punctuation">(</span>
+                                  <span class="token string-literal"><span class="token string">'subscription_interest_toggle'</span></span><span class="token punctuation">,</span>
+                                  <span class="token symbol">partial</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">'pages/subscription_interest_toggle'</span></span>
+                                <span class="token punctuation">)</span>
+                              <span class="token keyword">end</span>
+                            <span class="token keyword">end</span>
+                          <span class="token keyword">end</span>
+                        <span class="token keyword">end</span>
+                        </code></pre>
 
                         <h5>Key Bits</h5>
                         <p>The key part here are the in the turbo stream response, which renders a turbo stream.</p>
 
-                        <pre></pre>
+                        <pre class="language-ruby" tabindex="0"><code class="language-ruby">turbo_stream<span class="token punctuation">.</span>replace<span class="token punctuation">(</span>
+                                  <span class="token string-literal"><span class="token string">'subscription_interest_toggle'</span></span><span class="token punctuation">,</span>
+                                  <span class="token symbol">partial</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">'pages/subscription_interest_toggle'</span></span>
+                                <span class="token punctuation">)</span></code></pre>
 
                         <p>“replace” is the <a href="https://turbo.hotwired.dev/handbook/streams#stream-messages-and-actions">action</a>. The partial in the response will replace the existing element with the target DOM ID.
                         'subscription_interest_toggle' is the HTML ID which the stream is targeting and the partial is what the target is going
@@ -240,41 +258,121 @@
                         <p><strong>Toggle Button Partial</strong></p>
                         <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/favourites/_favourite_toggle.html.erb">app/views/favourites/_favourite_toggle.html.erb</a>
 
-                        <pre>
-                        </pre>
+                        <pre class="language-erb"
+                            tabindex="0"><code class="language-erb"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>favourite_toggle_<span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> dom_id<span class="token punctuation">(</span>coffee<span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span><span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+                          <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"> <span class="token keyword">if</span> current_user<span class="token operator">&amp;.</span>favourites<span class="token punctuation">.</span>find_by<span class="token punctuation">(</span><span class="token symbol">coffee</span><span class="token operator">:</span> coffee<span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                            <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> button_to delete_favourite_path<span class="token punctuation">(</span>coffee<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token symbol">method</span><span class="token operator">:</span> <span class="token symbol">:delete</span><span class="token punctuation">,</span> <span class="token symbol">class</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">'link link-primary link-icon icon-line-1-4'</span></span> <span class="token keyword">do</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>tooltip-parent<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+                                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>icon-basic-heart-1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span>
+                                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>tooltip-content right delay-slow<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Remove from your favourites<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+                              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+                            <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"> <span class="token keyword">end</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                          <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"> <span class="token keyword">else</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                            <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> button_to create_favourite_path<span class="token punctuation">(</span>coffee<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token symbol">method</span><span class="token operator">:</span> <span class="token symbol">:post</span><span class="token punctuation">,</span> <span class="token symbol">class</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">'link link-primary link-icon icon-line-1-4'</span></span> <span class="token keyword">do</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>tooltip-parent<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+                                    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>icon-basic-heart<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span>
+                            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>tooltip-content right delay-slow<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Add to your favourites<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+                              <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+                            <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"> <span class="token keyword">end</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                          <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"> <span class="token keyword">end</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
 
                         <p><strong>Parent View</strong></p>
                         <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/dashboard/index.html.erb">app/views/dashboard/index.html.erb</a>
 
-                        <pre></pre>
+                        <pre class="language-erb"
+                            tabindex="0"><code class="language-erb"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>section</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>header<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+                            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>row stats<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+                                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>favourites_count<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> current_user<span class="token punctuation">.</span>favourites<span class="token punctuation">.</span>count </span><span class="token delimiter punctuation">%&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span> favourites
+                            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>section</span><span class="token punctuation">&gt;</span></span>
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>section</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>favourites<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+                            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">&gt;</span></span><span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> link_to <span class="token string-literal"><span class="token string">'Your Favourites'</span></span><span class="token punctuation">,</span> favourites_path<span class="token punctuation">,</span> <span class="token symbol">class</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">'link link-white link-title'</span></span> </span><span class="token delimiter punctuation">%&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">&gt;</span></span>
+                            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dashboard_favourites<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>shelf row<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+                              <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"> <span class="token variable">@favourites</span><span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>coffee<span class="token operator">|</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                                <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> render <span class="token string-literal"><span class="token string">'favourites/favourite'</span></span><span class="token punctuation">,</span> <span class="token symbol">coffee</span><span class="token operator">:</span> coffee </span><span class="token delimiter punctuation">%&gt;</span></span>
+                              <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"> <span class="token keyword">end</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>section</span><span class="token punctuation">&gt;</span></span></code></pre>
 
                         <p><strong>Favourite Partial</strong></p>
                         <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/favourites/_favourite.html.erb">app/views/favourites/_favourite.html.erb</a>
 
-                        <pre></pre>
+                        <pre class="language-erb"
+                            tabindex="0"><code class="language-erb"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dashboard_favourites_<span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> dom_id<span class="token punctuation">(</span>coffee<span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span><span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>favourite<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+                          <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> render partial<span class="token operator">:</span> <span class="token string-literal"><span class="token string">'coffees/coffee'</span></span><span class="token punctuation">,</span> <span class="token symbol">locals</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token symbol">coffee</span><span class="token operator">:</span> coffee <span class="token punctuation">}</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
 
                         <p><strong>Coffee Partial</strong></p>
                         <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/coffees/_coffee.html.erb">app/views/coffees/_coffee.html.erb</a>
                         <p><strong>Controller</strong></p>
                         <a href="https://github.com/phil-6/dailybrew/blob/main/app/controllers/favourites_controller.rb">app/controllers/favourites_controller.rb</a>
                         
-                        <pre></pre>
+                        <pre class="language-ruby" tabindex="0"><code class="language-ruby"><span class="token keyword">class</span> <span class="token class-name">FavouritesController</span> <span class="token operator">&lt;</span> ApplicationController
+                          <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">index</span></span>
+                            <span class="token variable">@favourites</span> <span class="token operator">=</span> current_user<span class="token punctuation">.</span>favourite_coffees
+                          <span class="token keyword">end</span>
+                        
+                          <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">create</span></span>
+                            <span class="token variable">@favourite</span> <span class="token operator">=</span> Favourite<span class="token punctuation">.</span>create<span class="token punctuation">(</span><span class="token symbol">user</span><span class="token operator">:</span> current_user<span class="token punctuation">,</span> <span class="token symbol">coffee_id</span><span class="token operator">:</span> params<span class="token punctuation">[</span><span class="token symbol">:coffee_id</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                            <span class="token variable">@coffee</span> <span class="token operator">=</span> <span class="token variable">@favourite</span><span class="token punctuation">.</span>coffee
+                        
+                            respond_to <span class="token keyword">do</span> <span class="token operator">|</span>format<span class="token operator">|</span>
+                              format<span class="token punctuation">.</span>turbo_stream
+                            <span class="token keyword">end</span>
+                          <span class="token keyword">end</span>
+                        
+                          <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">destroy</span></span>
+                            <span class="token variable">@favourite</span> <span class="token operator">=</span> Favourite<span class="token punctuation">.</span>find_by<span class="token punctuation">(</span><span class="token symbol">user</span><span class="token operator">:</span> current_user<span class="token punctuation">,</span> <span class="token symbol">coffee_id</span><span class="token operator">:</span> params<span class="token punctuation">[</span><span class="token symbol">:coffee_id</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+                            <span class="token variable">@coffee</span> <span class="token operator">=</span> <span class="token variable">@favourite</span><span class="token punctuation">.</span>coffee
+                            <span class="token variable">@favourite</span><span class="token punctuation">.</span>destroy
+                        
+                            respond_to <span class="token keyword">do</span> <span class="token operator">|</span>format<span class="token operator">|</span>
+                              format<span class="token punctuation">.</span>turbo_stream
+                            <span class="token keyword">end</span>
+                          <span class="token keyword">end</span>
+                        <span class="token keyword">end</span></code></pre>
 
                         <p><strong>Create Turbo Stream</strong></p>
                         <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/favourites/create.turbo_stream.erb">app/views/favourites/create.turbo_stream.erb</a>
                         
-                        <pre></pre>
+                        <pre class="language-erb"
+                            tabindex="0"><code class="language-erb"><span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_stream<span class="token punctuation">.</span>replace<span class="token punctuation">(</span>
+                              <span class="token string-literal"><span class="token string">"favourite_toggle_</span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">dom_id<span class="token punctuation">(</span><span class="token variable">@coffee</span><span class="token punctuation">)</span></span><span class="token delimiter punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">,</span>
+                              <span class="token symbol">partial</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">'favourite_toggle'</span></span><span class="token punctuation">,</span>
+                              <span class="token symbol">locals</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token symbol">coffee</span><span class="token operator">:</span> <span class="token variable">@coffee</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        
+                        <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_stream<span class="token punctuation">.</span>update<span class="token punctuation">(</span>
+                              <span class="token string-literal"><span class="token string">"favourites_count"</span></span><span class="token punctuation">,</span>
+                              <span class="token symbol">html</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">%(</span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">current_user<span class="token punctuation">.</span>favourites<span class="token punctuation">.</span>count</span><span class="token delimiter punctuation">}</span></span><span class="token string">)</span></span> <span class="token punctuation">)</span></span><span class="token delimiter punctuation">%&gt;</span></span>
+                        
+                        <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_stream<span class="token punctuation">.</span><span class="token keyword">prepend</span><span class="token punctuation">(</span>
+                              <span class="token string-literal"><span class="token string">'dashboard_favourites'</span></span><span class="token punctuation">,</span>
+                              <span class="token symbol">partial</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">'favourite'</span></span><span class="token punctuation">,</span>
+                              <span class="token symbol">locals</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token symbol">coffee</span><span class="token operator">:</span> <span class="token variable">@coffee</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span></code></pre>
 
                         <p><strong>Destroy Turbo Stream</strong></p>
                         <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/favourites/destroy.turbo_stream.erb">app/views/favourites/destroy.turbo_stream.erb</a>
                         
-                        <pre></pre>
+                        <pre class="language-erb"
+                            tabindex="0"><code class="language-erb"><span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_stream<span class="token punctuation">.</span>remove<span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"dashboard_favourites_</span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">dom_id<span class="token punctuation">(</span><span class="token variable">@coffee</span><span class="token punctuation">)</span></span><span class="token delimiter punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        
+                        <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_stream<span class="token punctuation">.</span>replace<span class="token punctuation">(</span>
+                              <span class="token string-literal"><span class="token string">"favourite_toggle_</span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">dom_id<span class="token punctuation">(</span><span class="token variable">@coffee</span><span class="token punctuation">)</span></span><span class="token delimiter punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">,</span>
+                              <span class="token symbol">partial</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">"favourite_toggle"</span></span><span class="token punctuation">,</span>
+                              <span class="token symbol">locals</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token symbol">coffee</span><span class="token operator">:</span> <span class="token variable">@coffee</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        
+                        <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_stream<span class="token punctuation">.</span>update<span class="token punctuation">(</span>
+                              <span class="token string-literal"><span class="token string">"favourites_count"</span></span><span class="token punctuation">,</span>
+                              <span class="token symbol">html</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">%(</span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">current_user<span class="token punctuation">.</span>favourites<span class="token punctuation">.</span>count</span><span class="token delimiter punctuation">}</span></span><span class="token string">)</span></span> <span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span></code></pre>
 
                         <h5>Explanation</h5>
                         <p>We can see that the controller just responds with a turbo stream format.turbo_stream. It then looks for a turbo stream
                         with a matching name in the correct view folder.</p>
 
-                        <pre></pre>
+                        <pre class="language-ruby" tabindex="0"><code class="language-ruby">respond_to <span class="token keyword">do</span> <span class="token operator">|</span>format<span class="token operator">|</span>
+                            format<span class="token punctuation">.</span>turbo_stream
+                        <span class="token keyword">end</span></code></pre>
 
                         <p>These responses do several actions. While you can respond with multiple streams directly from the controller, it’s
                         considered better practice to move these multi response streams to a partial.</p>
@@ -282,7 +380,11 @@
                         <p>These responses do several actions. While you can respond with multiple streams directly from the controller, it’s
                         considered better practice to move these multi response streams to a partial.</p>
 
-                        <pre></pre>
+                        <pre class="language-erb"
+                            tabindex="0"><code class="language-erb"><span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_stream<span class="token punctuation">.</span>replace<span class="token punctuation">(</span>
+                              <span class="token string-literal"><span class="token string">"favourite_toggle_</span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">dom_id<span class="token punctuation">(</span><span class="token variable">@coffee</span><span class="token punctuation">)</span></span><span class="token delimiter punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">,</span>
+                              <span class="token symbol">partial</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">"favourite_toggle"</span></span><span class="token punctuation">,</span>
+                              <span class="token symbol">locals</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token symbol">coffee</span><span class="token operator">:</span> <span class="token variable">@coffee</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span></code></pre>
 
                         <img class="mt-2 mb-2 in-blog-content" src="../assets/images/content/hh-fav-toggle.gif" alt="gif toggle favourite button">
                         <img class="mt-2 mb-2 in-blog-content" src="../assets/images/content/hh-shelf-toggle.gif" alt="gif toggle shelf button">
@@ -294,12 +396,22 @@
                         partial.</p>
                         <p>Turbo Stream</p>
 
-                        <pre></pre>
+                        <pre class="language-erb"
+                            tabindex="0"><code class="language-erb"><span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_stream<span class="token punctuation">.</span>replace<span class="token punctuation">(</span>
+                              <span class="token string-literal"><span class="token string">"favourite_toggle_</span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">dom_id<span class="token punctuation">(</span><span class="token variable">@coffee</span><span class="token punctuation">)</span></span><span class="token delimiter punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">,</span>
+                              <span class="token symbol">partial</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">"favourite_toggle"</span></span><span class="token punctuation">,</span>
+                              <span class="token symbol">locals</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token symbol">coffee</span><span class="token operator">:</span> <span class="token variable">@coffee</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span></code></pre>
 
                         <p>Target Element</p>
 
-                        <pre></pre>
-
+                        <pre class="language-erb"
+                            tabindex="0"><code class="language-erb"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dashboard_favourites<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>shelf row<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+                            <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"><span class="token comment"># New partial is inserted here </span></span><span class="token delimiter punctuation">%&gt;</span></span>
+                            <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"> <span class="token variable">@favourites</span><span class="token punctuation">.</span><span class="token keyword">each</span> <span class="token keyword">do</span> <span class="token operator">|</span>coffee<span class="token operator">|</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                                <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> render <span class="token string-literal"><span class="token string">'favourites/favourite'</span></span><span class="token punctuation">,</span> <span class="token symbol">coffee</span><span class="token operator">:</span> coffee </span><span class="token delimiter punctuation">%&gt;</span></span>
+                            <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"> <span class="token keyword">end</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
+                       
                         <img class="mt-2 mb-2 in-blog-content" src="../assets/images/content/hh-content-updates.gif" alt="gif showing content being added and removed with turbo streams">
                         <p>The destroy content update is simple, it looks for the first element in the DOM with the specified ID, in this case
                         dashboard_favourites_#{dom_id(@coffee)}, and removes it.</p>
@@ -308,7 +420,10 @@
                         <h5>Live Counters</h5>
                         <p>As part of the Turbo Stream response from the controller we have an “update” action.</p>
 
-                        <pre></pre>
+                        <pre class="language-erb"
+                            tabindex="0"><code class="language-erb"><span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_stream<span class="token punctuation">.</span>update<span class="token punctuation">(</span>
+                              <span class="token string-literal"><span class="token string">"favourites_count"</span></span><span class="token punctuation">,</span>
+                              <span class="token symbol">html</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">%(</span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">current_user<span class="token punctuation">.</span>favourites<span class="token punctuation">.</span>count</span><span class="token delimiter punctuation">}</span></span><span class="token string">)</span></span> <span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span></code></pre>
 
                         <p>The “Replace” action, as per the <a href="https://turbo.hotwired.dev/handbook/streams#stream-messages-and-actions" target="_blank">Turbo Handbook</a>:</p>
                         <p class="quote">The contents of this template will replace the contents of the element with ID "unread_count" by setting innerHtml to ""
@@ -316,7 +431,8 @@
                         to be contrasted with the "replace" action above, where that action would necessitate the rebuilding of handlers.</p>
                         <p>So it targets the element with ID favourites_count and swaps the HTML.</p>
 
-                        <pre></pre>
+                        <pre class="language-erb"
+                            tabindex="0"><code class="language-erb"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>favourites_count<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> current_user<span class="token punctuation">.</span>favourites<span class="token punctuation">.</span>count </span><span class="token delimiter punctuation">%&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span></code></pre>
 
                         <p>The new HTML is the same as the old, but by reloading it the erb is executed again and the counter is updated.</p>
                         <p>That's it for now. More coming soon. Feedback, thoughts and corrections <a href="mailto:hotwirehandbook@philreynolds.email" target="_blank">get in touch</a></p>
@@ -329,7 +445,7 @@
     <!-- Previous/Next Buttons -->
     <div class="container mt-5">
         <div class="row">
-            <div class="col-6 d-none text-center ">
+            <div class="col-6 text-center ">
                 <button class="btn home-page-btn">Previous</button>
             </div>
             <div class="col-6 text-center">
@@ -354,6 +470,7 @@
             </div>
         </div>
     </footer>
+    <script src="../assets/js/prism.js"></script>
 </body>
 
 </html>
