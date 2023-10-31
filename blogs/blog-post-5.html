@@ -96,16 +96,16 @@
     <article class="blog-full container-fluid">
         <div class="row">
             <div class="col-12 text-center gen-text">
-                <h3>Simple Javascript Theme Toggle</h3>
+                <h3>Hotwire Handbook - Part 2 - Pagination</h3>
             </div>
         </div>
         <div class="row author-info pt-2 pb-2 rounded">
             <div class="col-6">
-                <img class="author-photo float-right mt-0" src="../assets/images/team/team-member-4.webp" alt="team-member-4">
+                <img class="author-photo float-right mt-0" src="../assets/images/team/team-member-1.webp" alt="team-member-1">
             </div>
             <div class="col-6 gen-text">
-                <h5>Rey</h5>
-                <p>20 May 2021</p>
+                <h5>Lois</h5>
+                <p>27 June 2022</p>
                 <ul class="list-inline">
                     <li class="list-inline-item">
                         <a class="social" href="#">
@@ -130,188 +130,265 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-justify gen-text">
-                        <p>This post is going to talk through setting up a theme toggle using plain JavaScript.
-                        Dark mode is becoming more and more common, its something that most operating systems now have as an option and many
-                        individual pages now offer it as a preference too. However its not for everyone, and choice is always a good thing.
-                        This code originally came from CSS Tricks however their implementation left a bit to be desired and just didn’t work
-                        when I tried to implement it.</p>
-                        <p>With a few tweaks, we can improve their code and we have our own dark mode toggle. If you want to test this out, click
-                        the sun or moon button at the top of these page!</p>
-                        <p>There’s a few considerations we need to have when building this script; does the user have a system preference set? has
-                        the user visited our site before and set a preference here?</p>
-                        <p>We can check for system preferences using window.matchMedia("(prefers-color-scheme: dark)"); and we can get any previous
-                        site preference from local storage localStorage.getItem("theme");. So the first things we are going to do in our script
-                        is assign these to variables, and create a variable for our toggle button.</p>
-                        <pre class="blog-code-snippet" tabindex="0">
-                            <code><span class="token-js-keyword">const</span> btn <span class="token-js-operator">=</span> document<span class="token-js-punctuation">.</span><span class="token-js-function">querySelector</span><span class="token-js-punctuation">(</span><span class="token-js-string">"#theme-toggle"</span><span class="token-js-punctuation">)</span><span class="token-js-punctuation">;</span>
-                            <span class="token-js-comment">// check to see if OS preferences for light or dark mode</span>
-                            <span class="token-js-keyword">const</span> prefersDarkScheme <span class="token-js-operator">=</span> window<span class="token-js-punctuation">.</span><span class="token-js-function">matchMedia</span><span class="token-js-punctuation">(</span><span class="token-js-string">"(prefers-color-scheme: dark)"</span><span class="token-js-punctuation">)</span><span class="token-js-punctuation">;</span>
-                            <span class="token-js-keyword">const</span> prefersLightScheme <span class="token-js-operator">=</span> window<span class="token-js-punctuation">.</span><span class="token-js-function">matchMedia</span><span class="token-js-punctuation">(</span><span class="token-js-string">"(prefers-color-scheme: light)"</span><span class="token-js-punctuation">)</span><span class="token-js-punctuation">;</span>
-                                                        
-                            <span class="token-js-comment">// check to see if local storage has a theme preference</span>
-                            <span class="token-js-keyword">let</span> currentTheme <span class="token-js-operator">=</span> localStorage<span class="token-js-punctuation">.</span><span class="token-js-function">getItem</span><span class="token-js-punctuation">(</span><span class="token-js-string">"theme"</span><span class="token-js-punctuation">)</span><span class="token-js-punctuation">;</span></code>
-                                                    </pre>
-                        <p>We want to let the user overwrite their system preferences, but if they haven’t done that we want to listen to take the
-                        system preference and set our site theme to match. We’re going to create a function called setTheme, in this we inspect
-                        our currentTheme variable. If it doesn’t exist we look at the system preference, set the currentTheme variable and call
-                        the function again.</p>
-                        <p>With a currentTheme variable set, we can make sure that the class on the body corresponds to our theme variable.</p>
-                        <pre class="blog-code-snippet" tabindex="0">
-                            <code><span class="token-js-keyword">function</span> <span class="token-js-function">setTheme</span><span class="token-js-punctuation">(</span><span class="token-js-punctuation">)</span> <span class="token-js-punctuation">{</span>
-                                <span class="token-js-comment">//if no local storage check against system preferences</span>
-                                <span class="token-js-keyword">if</span> <span class="token-js-punctuation">(</span>currentTheme <span class="token-js-operator">===</span> <span class="token-js-keyword">null</span><span class="token-js-punctuation">)</span> <span class="token-js-punctuation">{</span>
-                                    <span class="token-js-keyword">if</span> <span class="token-js-punctuation">(</span>prefersDarkScheme<span class="token-js-punctuation">.</span>matches<span class="token-js-punctuation">)</span> <span class="token-js-punctuation">{</span>
-                                        currentTheme <span class="token-js-operator">=</span> <span class="token-js-string">"dark"</span>
-                                    <span class="token-js-punctuation">}</span> <span class="token-js-keyword">else</span> <span class="token-js-keyword">if</span> <span class="token-js-punctuation">(</span>prefersLightScheme<span class="token-js-punctuation">.</span>matches<span class="token-js-punctuation">)</span> <span class="token-js-punctuation">{</span>
-                                        currentTheme <span class="token-js-operator">=</span> <span class="token-js-string">"light"</span>
-                                    <span class="token-js-punctuation">}</span> <span class="token-js-keyword">else</span> <span class="token-js-punctuation">{</span>
-                                        <span class="token-js-comment">// if no preferences, default to dark theme</span>
-                                        currentTheme <span class="token-js-operator">=</span> <span class="token-js-string">"dark"</span>
-                                    <span class="token-js-punctuation">}</span>
-                                    <span class="token-js-function">setTheme</span><span class="token-js-punctuation">(</span><span class="token-js-punctuation">)</span>
-                                <span class="token-js-punctuation">}</span> <span class="token-js-keyword">else</span> <span class="token-js-keyword">if</span> <span class="token-js-punctuation">(</span>currentTheme <span class="token-js-operator">===</span> <span class="token-js-string">"dark"</span><span class="token-js-punctuation">)</span> <span class="token-js-punctuation">{</span>
-                                    document<span class="token-js-punctuation">.</span>body<span class="token-js-punctuation">.</span>classList<span class="token-js-punctuation">.</span><span class="token-js-function">remove</span><span class="token-js-punctuation">(</span><span class="token-js-string">"light-mode"</span><span class="token-js-punctuation">)</span><span class="token-js-punctuation">;</span>
-                                    document<span class="token-js-punctuation">.</span>body<span class="token-js-punctuation">.</span>classList<span class="token-js-punctuation">.</span><span class="token-js-function">add</span><span class="token-js-punctuation">(</span><span class="token-js-string">"dark-mode"</span><span class="token-js-punctuation">)</span><span class="token-js-punctuation">;</span>
-                                <span class="token-js-punctuation">}</span> <span class="token-js-keyword">else</span> <span class="token-js-keyword">if</span> <span class="token-js-punctuation">(</span>currentTheme <span class="token-js-operator">===</span> <span class="token-js-string">"light"</span><span class="token-js-punctuation">)</span> <span class="token-js-punctuation">{</span>
-                                    document<span class="token-js-punctuation">.</span>body<span class="token-js-punctuation">.</span>classList<span class="token-js-punctuation">.</span><span class="token-js-function">remove</span><span class="token-js-punctuation">(</span><span class="token-js-string">"dark-mode"</span><span class="token-js-punctuation">)</span><span class="token-js-punctuation">;</span>
-                                    document<span class="token-js-punctuation">.</span>body<span class="token-js-punctuation">.</span>classList<span class="token-js-punctuation">.</span><span class="token-js-function">add</span><span class="token-js-punctuation">(</span><span class="token-js-string">"light-mode"</span><span class="token-js-punctuation">)</span><span class="token-js-punctuation">;</span>
-                                <span class="token-js-punctuation">}</span>
-                            <span class="token-js-punctuation">}</span></code>
-
-                        </pre>
-                        <p>There’s two final bits to our script. First, handle a button press and toggle the theme. The button inspects our
-                        currentTheme variable and swaps the value. It then stores the new value in local storage. There is probably a shorter
-                        way of writing this with a ternary operator but this is clean, simple and easily understandable.</p>
-                        <pre class="blog-code-snippet">
-                            <code>btn<span class="token-js-punctuation">.</span><span class="token-js-function">addEventListener</span><span class="token-js-punctuation">(</span><span class="token-js-string">"click"</span><span class="token-js-punctuation">,</span> <span class="token-js-keyword">function</span> <span class="token-js-punctuation">(</span><span class="token-js-punctuation">)</span> <span class="token-js-punctuation">{</span>
-                                <span class="token-js-keyword">if</span> <span class="token-js-punctuation">(</span>currentTheme <span class="token-js-operator">===</span> <span class="token-js-string">"dark"</span><span class="token-js-punctuation">)</span> <span class="token-js-punctuation">{</span>
-                                    currentTheme <span class="token-js-operator">=</span> <span class="token-js-string">"light"</span>
-                                    <span class="token-js-function">setTheme</span><span class="token-js-punctuation">(</span><span class="token-js-punctuation">)</span>
-                                <span class="token-js-punctuation">}</span> <span class="token-js-keyword">else</span> <span class="token-js-punctuation">{</span>
-                                    currentTheme <span class="token-js-operator">=</span> <span class="token-js-string">"dark"</span><span class="token-js-punctuation">;</span>
-                                    <span class="token-js-function">setTheme</span><span class="token-js-punctuation">(</span><span class="token-js-punctuation">)</span>
-                                <span class="token-js-punctuation">}</span>
-                                localStorage<span class="token-js-punctuation">.</span><span class="token-js-function">setItem</span><span class="token-js-punctuation">(</span><span class="token-js-string">"theme"</span><span class="token-js-punctuation">,</span> currentTheme<span class="token-js-punctuation">)</span><span class="token-js-punctuation">;</span>
-                            <span class="token-js-punctuation">}</span><span class="token-js-punctuation">)</span><span class="token-js-punctuation">;</span>
-                                    </code>
-                        </pre>
-                        <p>The final thing we want to do is call our setTheme() function at the bottom of the page so it runs on page load. The
-                        full script is at the end of this article.</p>
-                        <p>The next thing we need to do is set up the css to control our themes. With the way we’ve put this together we’re not
-                        limited to just dark or light themes, we could implement a range of colours if we wanted. For now, we’re just sticking
-                        with dark and light themes. These classes are applied to our html body. So any additional styling we want just needs to
-                        use these as parents, the scss we use for this is here:</p>
-                        <pre class="blog-code-snippet">
-                            <code><span class="token-css-selector"><span class="token-css-parent important">&amp;</span>.dark-mode </span><span class="token-css-punctuation">{</span>
-                                <span class="token-css-property">background-color</span><span class="token-css-punctuation">:</span> <span class="token-css-variable">$dark</span><span class="token-css-punctuation">;</span>
-                                <span class="token-css-property">background</span><span class="token-css-punctuation">:</span> <span class="token-css-variable">$dark-background</span><span class="token-css-punctuation">;</span>
-                                <span class="token-css-property">color</span><span class="token-css-punctuation">:</span> <span class="token-css-variable">$ink-light</span><span class="token-css-punctuation">;</span>
-                            
-                                <span class="token-css-selector">.dark </span><span class="token-css-punctuation">{</span>
-                                <span class="token-css-property">display</span><span class="token-css-punctuation">:</span> block<span class="token-css-punctuation">;</span>
-                                <span class="token-css-punctuation">}</span>
-                            
-                                <span class="token-css-selector">.light </span><span class="token-css-punctuation">{</span>
-                                <span class="token-css-property">display</span><span class="token-css-punctuation">:</span> none<span class="token-css-punctuation">;</span>
-                                <span class="token-css-punctuation">}</span>
-                            
-                                <span class="token-css-selector">nav </span><span class="token-css-punctuation">{</span>
-                                <span class="token-css-selector">a, button </span><span class="token-css-punctuation">{</span>
-                                    <span class="token-css-property">background</span><span class="token-css-punctuation">:</span> #ffffffe6<span class="token-css-punctuation">;</span>
-                                    <span class="token-css-property">color</span><span class="token-css-punctuation">:</span> <span class="token-css-variable">$dark-gray</span><span class="token-css-punctuation">;</span>
-                                <span class="token-css-punctuation">}</span>
-                            
-                                <span class="token-css-selector">a:hover </span><span class="token-css-punctuation">{</span>
-                                    <span class="token-css-property">color</span><span class="token-css-punctuation">:</span> <span class="token-css-variable">$ink-dark</span><span class="token-css-punctuation">;</span>
-                                    <span class="token-css-property">background</span><span class="token-css-punctuation">:</span> #fff<span class="token-css-punctuation">;</span>
-                                <span class="token-css-punctuation">}</span>
-                            
-                                <span class="token-css-selector">button:hover </span><span class="token-css-punctuation">{</span>
-                                    <span class="token-css-property">color</span><span class="token-css-punctuation">:</span> <span class="token-css-variable">$ink-dark</span><span class="token-css-punctuation">;</span>
-                                    <span class="token-css-property">background</span><span class="token-css-punctuation">:</span> <span class="token-css-variable">$light-background</span><span class="token-css-punctuation">;</span>
-                                <span class="token-css-punctuation">}</span>
-                                <span class="token-css-punctuation">}</span>
-                            
-                                <span class="token-css-selector">.author </span><span class="token-css-punctuation">{</span>
-                                <span class="token-css-property">color</span><span class="token-css-punctuation">:</span> <span class="token-css-variable">$medium-gray</span><span class="token-css-punctuation">;</span>
-                                <span class="token-css-punctuation">}</span>
-                            
-                                <span class="token-css-selector">article </span><span class="token-css-punctuation">{</span>
-                                <span class="token-css-selector">a </span><span class="token-css-punctuation">{</span>
-                                    <span class="token-css-property">color</span><span class="token-css-punctuation">:</span> <span class="token-css-variable">$dark-link</span><span class="token-css-punctuation">;</span>
-                                    <span class="token-css-property">text-decoration</span><span class="token-css-punctuation">:</span> none<span class="token-css-punctuation">;</span>
-                            
-                                    <span class="token-css-selector"><span class="token-css-parent important">&amp;</span>:hover </span><span class="token-css-punctuation">{</span>
-                                    <span class="token-css-property">color</span><span class="token-css-punctuation">:</span> <span class="token-css-variable">$dark-link-hover</span><span class="token-css-punctuation">;</span>
-                                    <span class="token-css-punctuation">}</span>
-                                <span class="token-css-punctuation">}</span>
-                            
-                                <span class="token-css-selector">code.inline </span><span class="token-css-punctuation">{</span>
-                                    <span class="token-css-property">color</span><span class="token-css-punctuation">:</span> <span class="token-css-variable">$medium-gray</span><span class="token-css-punctuation">;</span>
-                                <span class="token-css-punctuation">}</span>
-                                <span class="token-css-punctuation">}</span>
-                            <span class="token-css-punctuation">}</span>
-                            
-                            <span class="token-css-selector"><span class="token-css-parent important">&amp;</span>.light-mode </span><span class="token-css-punctuation">{</span>
-                                <span class="token-css-property">background-color</span><span class="token-css-punctuation">:</span> <span class="token-css-variable">$gray</span><span class="token-css-punctuation">;</span>
-                                <span class="token-css-property">background</span><span class="token-css-punctuation">:</span> <span class="token-css-variable">$light-background</span><span class="token-css-punctuation">;</span>
-                                <span class="token-css-property">color</span><span class="token-css-punctuation">:</span> <span class="token-css-variable">$ink-dark</span><span class="token-css-punctuation">;</span>
-                            
-                                <span class="token-css-selector">.light </span><span class="token-css-punctuation">{</span>
-                                <span class="token-css-property">display</span><span class="token-css-punctuation">:</span> block<span class="token-css-punctuation">;</span>
-                                <span class="token-css-punctuation">}</span>
-                            
-                                <span class="token-css-selector">.dark </span><span class="token-css-punctuation">{</span>
-                                <span class="token-css-property">display</span><span class="token-css-punctuation">:</span> none<span class="token-css-punctuation">;</span>
-                                <span class="token-css-punctuation">}</span>
-                            
-                                <span class="token-css-selector">.lab-logo </span><span class="token-css-punctuation">{</span>
-                                <span class="token-css-property">background-color</span><span class="token-css-punctuation">:</span> <span class="token-css-variable">$dark</span><span class="token-css-punctuation">;</span>
-                                <span class="token-css-property">background</span><span class="token-css-punctuation">:</span> <span class="token-css-variable">$dark-background</span><span class="token-css-punctuation">;</span>
-                                <span class="token-css-property">-webkit-box-shadow</span><span class="token-css-punctuation">:</span> 0 5px 10px 10px <span class="token-css-variable">$dark</span><span class="token-css-punctuation">;</span>
-                                <span class="token-css-property">box-shadow</span><span class="token-css-punctuation">:</span> 0 5px 10px 10px <span class="token-css-variable">$dark</span><span class="token-css-punctuation">;</span>
-                                <span class="token-css-punctuation">}</span>
-                            
-                                <span class="token-css-selector">nav </span><span class="token-css-punctuation">{</span>
-                                <span class="token-css-selector">a, button </span><span class="token-css-punctuation">{</span>
-                                    <span class="token-css-property">background</span><span class="token-css-punctuation">:</span> <span class="token-css-variable">$dark-gray</span><span class="token-css-punctuation">;</span>
-                                    <span class="token-css-property">color</span><span class="token-css-punctuation">:</span> <span class="token-css-variable">$ink-light</span><span class="token-css-punctuation">;</span>
-                                <span class="token-css-punctuation">}</span>
-                            
-                                <span class="token-css-selector">a:hover </span><span class="token-css-punctuation">{</span>
-                                    <span class="token-css-property">color</span><span class="token-css-punctuation">:</span> <span class="token-css-variable">$dark</span><span class="token-css-punctuation">;</span>
-                                <span class="token-css-punctuation">}</span>
-                            
-                                <span class="token-css-selector">button:hover </span><span class="token-css-punctuation">{</span>
-                                    <span class="token-css-property">color</span><span class="token-css-punctuation">:</span> <span class="token-css-variable">$ink-light</span><span class="token-css-punctuation">;</span>
-                                    <span class="token-css-property">background</span><span class="token-css-punctuation">:</span> <span class="token-css-variable">$dark-background</span><span class="token-css-punctuation">;</span>
-                                <span class="token-css-punctuation">}</span>
-                                <span class="token-css-punctuation">}</span>
-                            
-                                <span class="token-css-selector">.author </span><span class="token-css-punctuation">{</span>
-                                <span class="token-css-property">color</span><span class="token-css-punctuation">:</span> <span class="token-css-variable">$dark-gray</span><span class="token-css-punctuation">;</span>
-                                <span class="token-css-punctuation">}</span>
-                            
-                                <span class="token-css-selector">article </span><span class="token-css-punctuation">{</span>
-                                <span class="token-css-selector">a </span><span class="token-css-punctuation">{</span>
-                                    <span class="token-css-property">color</span><span class="token-css-punctuation">:</span> <span class="token-css-variable">$light-link</span><span class="token-css-punctuation">;</span>
-                                    <span class="token-css-property">text-decoration</span><span class="token-css-punctuation">:</span> none<span class="token-css-punctuation">;</span>
-                            
-                                    <span class="token-css-selector"><span class="token-css-parent important">&amp;</span>:hover </span><span class="token-css-punctuation">{</span>
-                                    <span class="token-css-property">color</span><span class="token-css-punctuation">:</span> <span class="token-css-variable">$light-link-hover</span><span class="token-css-punctuation">;</span>
-                                    <span class="token-css-punctuation">}</span>
-                                <span class="token-css-punctuation">}</span>
-                            
-                                <span class="token-css-selector">code.inline </span><span class="token-css-punctuation">{</span>
-                                    <span class="token-css-property">color</span><span class="token-css-punctuation">:</span> <span class="token-css-variable">$dark-gray</span><span class="token-css-punctuation">;</span>
-                                <span class="token-css-punctuation">}</span>
-                                <span class="token-css-punctuation">}</span>
-                            <span class="token-css-punctuation">}</span></code>
-                        </pre>
-                        <p>You can also view this on 
-                            <a class="social" href="https://github.com/Legal-Innovation-Lab-Wales/developer-resources/blob/main/developer-page/assets/js/themeToggle.js">GitHub <i aria-hidden="true" class="fab fa-github"></i>
-                            </a></p>
-                            <p>If you have any questions, thoughts or suggestions, please get in touch!</p>
+                        <p>Welcome to Part 2, I'm breaking pagination out into its own part, because there are quite a few moving parts that come
+                        with pagination.</p>
+                        <p>This particular section would not be possible without this excellent guide by <a href="https://www.colby.so/posts/pagination-and-infinite-scrolling-with-hotwire" target="_blank">David Colby</a>. I'm going to cover quite a
+                        lot of the same ground that David does, but in a slightly different way.</p>
+                        <p>I'm also going to presume that you're comfortable with pagination in general and the Pagy Ruby Gem. The Pagy Gem has
+                        brilliant documentation, so go give that a quick spin first if you haven't used it before.</p>
+                        <p>This is part 2 of my Hotwire Handbook, the aim of this is to complement the official Turbo Handbook and other great
+                        sources out there and also for my own information and recollection! Part 1 covers toggle buttons, content updates and
+                        live counters. You can find <a href="blog-post-2.html">Part 1 here</a></p>
+                        <h5>Contents</h5>
+                        <ul>
+                            <li>
+                                <a href="#part-1">Part 1 - Pagination on an index page with a button to Load More</a>
+                            </li>
+                            <li>
+                                <a href="#part-2">Part 2 - Infinite Scrolling and Auto Clicking</a>
+                            </li>
+                            <li>
+                                <a href="#part-3">Part 3 - Multiple paginated sections on one page</a>
+                            </li>
+                            <li>
+                                <a href="#part-4">Part 4 - Pagination but backwards - for chats</a>
+                            </li>
+                        </ul>
+                        <h5 id="part-1">Paginating an index page</h5>
+                        <p>For this first example we're going to reference Daily Brew. Daily Brew is an open-source coffee logging app, built with
+                        Rails 7 and Hotwire. Part of Daily Brew is a big list of UK coffee roasters, we're mainly looking at the Roasters Index
+                        page in this example.</p>
+                        <p>The first thing we want to do is a fairly normal Pagy set up</p>
+                        <p>Our controller's index action returns a paginated list of roasters.</p>
+                        <pre class="language-ruby" tabindex="0"><code class="language-ruby" lang="ruby"><span class="token comment"># app/controllers/roasters_controller.rb</span>
+                        <span class="token keyword">class</span> <span class="token class-name">RoastersController</span> <span class="token operator">&lt;</span> ApplicationController
+                          <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">index</span></span>
+                            <span class="token variable">@roasters_count</span> <span class="token operator">=</span> Roaster<span class="token punctuation">.</span>all<span class="token punctuation">.</span>count
+                            <span class="token variable">@pagy</span><span class="token punctuation">,</span> <span class="token variable">@roasters</span> <span class="token operator">=</span> pagy<span class="token punctuation">(</span>Roaster<span class="token punctuation">.</span>all<span class="token punctuation">.</span>order<span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'available_coffees_count DESC, name ASC'</span></span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token symbol">items</span><span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">)</span>
+                          <span class="token keyword">end</span>
+                        <span class="token keyword">end</span>
+                        </code></pre>
+                        <p>Then our index page renders our collection of roasters. This uses some snazzy Rails shorthand for rendering a
+                        collection. You can learn more about this shorthand in the Rails Docs, or this guide from Thoughtbot. You can see we
+                        have a couple of extra bits around our collection.</p>
+                        <pre class="language-erb" tabindex="0"><code class="language-erb" lang="erb"><span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"><span class="token comment"># app/views/roasters/index.html.erb </span></span><span class="token delimiter punctuation">%&gt;</span></span>
+                        <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_frame_tag <span class="token string-literal"><span class="token string">'page_handler'</span></span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>roasters<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>card-collection row<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+                          <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> render <span class="token variable">@roasters</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+                        <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> render <span class="token string-literal"><span class="token string">'shared/index_pager'</span></span><span class="token punctuation">,</span> <span class="token symbol">pagy</span><span class="token operator">:</span> <span class="token variable">@pagy</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        </code></pre>
+                        <p>Then our index page renders our collection of roasters. This uses some snazzy Rails shorthand for rendering a
+                        collection. You can learn more about this shorthand in the <a href="https://guides.rubyonrails.org/layouts_and_rendering.html#rendering-collections">Rails Docs</a>, or this guide from <a href="https://thoughtbot.com/blog/rendering-collections-in-rails">Thoughtbot</a>. You can see we
+                        have a couple of extra bits around our collection.</p>
+                        <pre class="language-erb" tabindex="0"><code class="language-erb" lang="erb"><span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"><span class="token comment"># app/views/roasters/index.html.erb </span></span><span class="token delimiter punctuation">%&gt;</span></span>
+                        <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_frame_tag <span class="token string-literal"><span class="token string">'page_handler'</span></span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>roasters<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>card-collection row<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+                          <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> render <span class="token variable">@roasters</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+                        <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> render <span class="token string-literal"><span class="token string">'shared/index_pager'</span></span><span class="token punctuation">,</span> <span class="token symbol">pagy</span><span class="token operator">:</span> <span class="token variable">@pagy</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        </code></pre>
+                        <p>To look a the three key sections of our index page:</p>
+                        <p>The page handler is an empty turbo frame that we are going to use as a target later on for our Turbo Stream content from
+                        the server.</p>
+                        <p>We then render each of our roasters in the <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/roasters/_roaster.html.erb">_roaster partial</a>.</p>
+                        <p>Finally we render our index-pager, this is our partial for the pagination controllers. We have a few extra bits in this,
+                        we're leveraging the controller_name helper to construct an ID and class for the html. We do this as we share this pager
+                        across several views from different controllers.</p>
+                        <pre class="language-erb" tabindex="0"><code class="language-erb" lang="erb"><span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"><span class="token comment"># app/views/shared/_index_pager.html.erb </span></span><span class="token delimiter punctuation">%&gt;</span></span>
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> controller_name </span><span class="token delimiter punctuation">%&gt;</span></span>_pager<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>pager <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> controller_name </span><span class="token delimiter punctuation">%&gt;</span></span>-pager row<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+                          <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"> <span class="token keyword">if</span> pagy<span class="token punctuation">.</span><span class="token keyword">next</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                            <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> link_to<span class="token punctuation">(</span>
+                                  <span class="token string-literal"><span class="token string">'Load More'</span></span><span class="token punctuation">,</span>
+                                  <span class="token string-literal"><span class="token string">"</span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">controller_name</span><span class="token delimiter punctuation">}</span></span><span class="token string">?query=</span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">params<span class="token punctuation">[</span><span class="token symbol">:query</span><span class="token punctuation">]</span></span><span class="token delimiter punctuation">}</span></span><span class="token string">&amp;page=</span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">pagy<span class="token punctuation">.</span><span class="token keyword">next</span></span><span class="token delimiter punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">,</span>
+                                  <span class="token symbol">data</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+                                    <span class="token symbol">turbo_frame</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">'page_handler'</span></span><span class="token punctuation">,</span>
+                                    <span class="token symbol">controller</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">'autoclick'</span></span>
+                                  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                                  <span class="token symbol">class</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">'btn btn-primary'</span></span>
+                                <span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                          <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"> <span class="token keyword">end</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+                        </code></pre>
+                        <p>If pagy returns a next page, we render a link to that next page. We're using the controller_name helper again here, to
+                        programmatically construct the link. This link is targeting the page_hander Turbo Frame. This informs Turbo that the
+                        response from this link should replace the content of the page_handler frame only. We need to explicitly declare this as
+                        our link is not nested within that turbo frame.</p>
+                        <p>We then use a Turbo Frame <a href="https://guides.rubyonrails.org/layouts_and_rendering.html#the-variants-option">render variant</a> for the response. This means that when our controller responds to our Turbo
+                        Frame request, instead of re-rendering the index.html.erb file it looks for index.html+turbo_frame.erb and renders that
+                        instead. (This is worth remembering for something quite a bit later on!)</p>
+                        <p>Our Turbo Frame variant content is wrapped in a page_handler Turbo Frame, as our link is looking to target that Turbo
+                        Frame. Inside this turbo frame is where things get interesting. Instead of rendering HTML content we render two Turbo
+                        Streams.</p>
+                        <pre class="language-erb" tabindex="0"><code class="language-erb" lang="erb"><span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"><span class="token comment"># app/views/roasters/index.html+turbo_frame.erb </span></span><span class="token delimiter punctuation">%&gt;</span></span>
+                        <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_frame_tag <span class="token string-literal"><span class="token string">"page_handler"</span></span> <span class="token keyword">do</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                          <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_stream_action_tag<span class="token punctuation">(</span>
+                                <span class="token string-literal"><span class="token string">"append"</span></span><span class="token punctuation">,</span>
+                                <span class="token symbol">target</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">"roasters"</span></span><span class="token punctuation">,</span>
+                                <span class="token symbol">template</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">%(</span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">render <span class="token variable">@roasters</span></span><span class="token delimiter punctuation">}</span></span><span class="token string">)</span></span>
+                              <span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                          <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_stream_action_tag<span class="token punctuation">(</span>
+                                <span class="token string-literal"><span class="token string">"replace"</span></span><span class="token punctuation">,</span>
+                                <span class="token symbol">target</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">"roasters_pager"</span></span><span class="token punctuation">,</span>
+                                <span class="token symbol">template</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">%(</span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">render <span class="token string-literal"><span class="token string">"shared/index_pager"</span></span><span class="token punctuation">,</span> <span class="token symbol">pagy</span><span class="token operator">:</span> <span class="token variable">@pagy</span></span><span class="token delimiter punctuation">}</span></span><span class="token string">)</span></span>
+                              <span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"> <span class="token keyword">end</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        </code></pre>
+                        <p>The first of appends @roasters to the existing list of roasters, using the ID of the parent element.</p>
+                        <p>The second replaces the pager with an updated version. So if we were on "page 2", the link would point to "page 3". We
+                        click the link, more roasters are rendered and the link is replaced so it points to "page 4"</p>
+                        <p>There is one more bit we need to add to wire this up. We need to tell our application to respond to the turbo frame
+                        request variant. Simply add the before_action filter below to our application controller</p>
+                        <pre class="language-ruby" tabindex="0"><code class="language-ruby" lang="ruby"><span class="token comment"># app/controllers/application_controller.rb</span>
+                        <span class="token keyword">class</span> <span class="token class-name">ApplicationController</span> <span class="token operator">&lt;</span> ActionController<span class="token double-colon punctuation">::</span>Base
+                          <span class="token keyword">include</span> Pagy<span class="token double-colon punctuation">::</span>Backend
+                          before_action <span class="token symbol">:turbo_frame_request_variant</span>
+                        
+                          <span class="token keyword">protected</span>
+                          <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">turbo_frame_request_variant</span></span>
+                            request<span class="token punctuation">.</span>variant <span class="token operator">=</span> <span class="token symbol">:turbo_frame</span> <span class="token keyword">if</span> turbo_frame_request<span class="token operator">?</span>
+                          <span class="token keyword">end</span>
+                        <span class="token keyword">end</span>
+                        </code></pre>
+                        <p>With all that plumbed in, when the "Load More" link is clicked, a Turbo Frame request is made to the /roasters end
+                        point. The controller responds to that request with the index.html+turbo_frame.erb partial. Turbo processes the two
+                        turbo streams in the page_handler turbo frame.</p>
+                        <p>This is a fairly elegant solution that lets the user press the button when they want to load more onto our index. But we
+                        can do better than that. With 16 lines of JavaScript!</p>
+                        <h5 id="part-2">Infinite Scrolling and Auto Clicking</h5>
+                        <p>In order for our page to allow a seamless scrolling experience we don't need to do much more. We're going to leverage
+                        <a href="https://github.com/stimulus-use/stimulus-use">stimulus-use</a> which is a small extension to stimulus. First we need to add this to our import map. Add the following line
+                        to app/config/importmap.rb</p>
+                        <pre class="language-ruby" tabindex="0"><code class="language-ruby" lang="ruby"><span class="token comment"># app/config/importmap.rb</span>
+                        pin <span class="token string-literal"><span class="token string">"stimulus-use"</span></span><span class="token punctuation">,</span> <span class="token symbol">to</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">"https://ga.jspm.io/npm:stimulus-use@0.50.0-2/dist/index.js"</span></span>
+                        
+                        </code></pre>
+                        <p>Note: If you're not using import maps then refer to the docs for how to install the stimulus-use library.</p>
+                        <p>Next we need to create a new controller in our javascript folder, and add in our 16 lines of javascript.</p>
+                        <pre class="language-javascript" tabindex="0"><code class="language-javascript" lang="javascript"><span class="token comment">// app/javascript/controllers/autoclick_controller.js</span>
+                        
+                        <span class="token keyword">import</span> <span class="token punctuation">{</span>Controller<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"@hotwired/stimulus"</span>
+                        <span class="token keyword">import</span> <span class="token punctuation">{</span>useIntersection<span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">'stimulus-use'</span>
+                        
+                        <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token keyword">class</span> <span class="token class-name">extends</span> Controller <span class="token punctuation">{</span>
+                        
+                            options <span class="token operator">=</span> <span class="token punctuation">{</span>
+                                <span class="token literal-property property">threshold</span><span class="token operator">:</span> <span class="token number">0.5</span>
+                            <span class="token punctuation">}</span>
+                        
+                            <span class="token function">connect</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                                <span class="token function">useIntersection</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>options<span class="token punctuation">)</span>
+                            <span class="token punctuation">}</span>
+                        
+                            <span class="token function">appear</span><span class="token punctuation">(</span><span class="token parameter">entry</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                                <span class="token keyword">this</span><span class="token punctuation">.</span>element<span class="token punctuation">.</span><span class="token function">click</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                            <span class="token punctuation">}</span>
+                        <span class="token punctuation">}</span>
+                        </code></pre>
+                        <p>Finally we need to add this controller to our "Load More" button. If you've been C&Ping the code so far, you already
+                        have this. If not, ensure you index_pager has:</p>
+                        <pre class="language-ruby" tabindex="0"><code class="language-ruby" lang="ruby">data<span class="token operator">:</span> <span class="token punctuation">{</span>
+                            <span class="token symbol">turbo_frame</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">'page_handler'</span></span><span class="token punctuation">,</span>
+                            <span class="token symbol">controller</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">'autoclick'</span></span>
+                            <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                        </code></pre>
+                        <p>Stimulus-Use handles all the complicated viewport intersection logic and we just say what to do when the button appears.</p>
+                        <p>When the "Load More" element appears into view, it gets programmatically clicked.</p>
+                        <h5 id="part-3">Multiple Paginated Sections on one Page</h5>
+                        <p>We've done the bulk of the work now, getting pagination with an infinite scrolling setup, but there are a few extras we
+                        need to do if we want to consider multiple different paginated sections on one page.</p>
+                        <p>For this, the main focus we need to have is clear naming conventions. The Daily Brew admin dashboard has three paginated
+                        tables. Each table has its own page_hander and specific ID in the HTML, as well as partials for the table and table
+                        pager.</p>
+                        <p>We use a <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/admin/dashboard.html%2Bturbo_frame.erb">shared Turbo Frame response variant</a>a that contains the Turbo Streams for each of the tables. Depending on which
+                        table is being scrolled, the response will render the correct turbo strea</p>
+                        <p>A nice straight forward extension to a single paginated section.</p>
+                        <h5 id="part-4">Paginating a Chat</h5>
+                        <p>Switching example app, we're going to look at a section of the Ryalto V4 Prototype. We're building chat functionality
+                        using hotwire.</p>
+                        <p>One of the quirks about Chat is that the expected behaviour is to start at the bottom of the conversation and be able to
+                        scroll up to older messages. In order to implement this we need to reverse our pagination.</p>
+                        <p>In our messages_controller we set @messages to @chat.messages.order('created_at DESC')</p>
+                        <pre class="language-ruby" tabindex="0"><code class="language-ruby" lang="ruby">    <span class="token comment"># app/controllers/chats/messages_controller.rb</span>
+                        	before_action <span class="token symbol">:chat</span><span class="token punctuation">,</span> <span class="token symbol">only</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">%i[index new create update]</span></span>
+                        
+                            <span class="token comment"># GET /chats/:id/messages/</span>
+                            <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">index</span></span>
+                              <span class="token variable">@pagy</span><span class="token punctuation">,</span> <span class="token variable">@messages</span> <span class="token operator">=</span> pagy<span class="token punctuation">(</span><span class="token variable">@chat</span><span class="token punctuation">.</span>messages<span class="token punctuation">.</span>order<span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'created_at DESC'</span></span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token symbol">items</span><span class="token operator">:</span> <span class="token number">10</span><span class="token punctuation">)</span>
+                            <span class="token keyword">end</span>
+                        </code></pre>
+                        <p>So the newest messages appear at the bottom. Great! But that's not our problem solved.</p>
+                        <img class="in-blog-content" src="../assets/images/content/image-messages.png" alt="screenshot of messages appearing on the bottom">
+                        <p>By default, the web browser will set the scroll position to the top of a container. Which isn't what we want.</p>
+                        <img class="in-blog-content" src="../assets/images/content/image-messages-1.png" alt="screenshot of issue where scroller begins on top of page">
+                        <p>There is a fairly simple way to get around this. If we set the flex-direction to column-reverse then each element within
+                        that flex container is rendered in the reverse order, and the scroll bar defaults to the bottom.</p>
+                        <img class="in-blog-content" src="../assets/images/content/image-messages-2.png" alt="screenshot of fixed scroller issue">
+                        <p>But now our messages are in the wrong order! To get around this, when our erb renders the messages, we can just reverse
+                        this direction <%= render @messages.reverse %> in our index.html.erb file</p>
+                        <img class="in-blog-content" src="../assets/images/content/image-messages-3.png" alt="screenshot fixed issue where messages appeared in wrong order">
+                        <p>But there's something funky going on here. When we hit our pagination, the direction is reversed</p>
+                        <p>We also need to reverse the directions in our index's Turbo Frame response variant</p>
+                        <pre class="language-erb" tabindex="0"><code class="language-erb" lang="erb"># index.html+turbo_frame.erb
+                        <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_frame_tag <span class="token string-literal"><span class="token string">"page_handler"</span></span> <span class="token keyword">do</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                          <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_stream_action_tag<span class="token punctuation">(</span>
+                                <span class="token string-literal"><span class="token string">"prepend"</span></span><span class="token punctuation">,</span>
+                                <span class="token symbol">target</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">"messages"</span></span><span class="token punctuation">,</span>
+                                <span class="token symbol">template</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">%(</span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">render <span class="token variable">@messages</span><span class="token punctuation">.</span>reverse</span><span class="token delimiter punctuation">}</span></span><span class="token string">)</span></span>
+                              <span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                          <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_stream_action_tag<span class="token punctuation">(</span>
+                                <span class="token string-literal"><span class="token string">"replace"</span></span><span class="token punctuation">,</span>
+                                <span class="token symbol">target</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">"messages_pager"</span></span><span class="token punctuation">,</span>
+                                <span class="token symbol">template</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">%(</span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">render <span class="token string-literal"><span class="token string">"chats/messages/pager"</span></span><span class="token punctuation">,</span> <span class="token symbol">pagy</span><span class="token operator">:</span> <span class="token variable">@pagy</span></span><span class="token delimiter punctuation">}</span></span><span class="token string">)</span></span>
+                              <span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"> <span class="token keyword">end</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        </code></pre>
+                        <p>There we go!</p>
+                        <p>There's one other "gotcha" that I came across while implementing this, because the messages index is already a Turbo
+                        Frame that is loaded inside a chat partial, we need to be aware of the type of requests that we are sending.</p>
+                        <p>Our chat messages are rendered by the following lazy loaded turbo frame</p>
+                        <pre class="language-erb" tabindex="0"><code class="language-erb" lang="erb"><span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_frame_tag <span class="token string-literal"><span class="token string">"chat_messages"</span></span><span class="token punctuation">,</span>
+                            <span class="token symbol">src</span><span class="token operator">:</span> chat_messages_path<span class="token punctuation">(</span>chat<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                            <span class="token symbol">target</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">"_top"</span></span> <span class="token keyword">do</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Loading...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+                        <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"> <span class="token keyword">end</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        </code></pre>
+                        <p>Because this is a turbo frame request to the index path, the response will use the Turbo Frame render variant.</p>
+                        <p>In order to get around this, and preserve our functionality, we can move our index view to a partial and render it
+                        inside the Turbo Frame request variant, but outside of the page_handler turbo frame.</p>
+                        <pre class="language-erb" tabindex="0"><code class="language-erb" lang="erb"><span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"><span class="token comment"># app/views/chats/messages/index.html+turbo_frame.erb </span></span><span class="token delimiter punctuation">%&gt;</span></span>
+                        <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_frame_tag <span class="token string-literal"><span class="token string">"page_handler"</span></span> <span class="token keyword">do</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                          <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_stream_action_tag<span class="token punctuation">(</span>
+                                <span class="token string-literal"><span class="token string">"prepend"</span></span><span class="token punctuation">,</span>
+                                <span class="token symbol">target</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">"messages"</span></span><span class="token punctuation">,</span>
+                                <span class="token symbol">template</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">%(</span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">render <span class="token variable">@messages</span><span class="token punctuation">.</span>reverse</span><span class="token delimiter punctuation">}</span></span><span class="token string">)</span></span>
+                              <span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                          <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_stream_action_tag<span class="token punctuation">(</span>
+                                <span class="token string-literal"><span class="token string">"replace"</span></span><span class="token punctuation">,</span>
+                                <span class="token symbol">target</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">"messages_pager"</span></span><span class="token punctuation">,</span>
+                                <span class="token symbol">template</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">%(</span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">render <span class="token string-literal"><span class="token string">"chats/messages/pager"</span></span><span class="token punctuation">,</span> <span class="token symbol">pagy</span><span class="token operator">:</span> <span class="token variable">@pagy</span></span><span class="token delimiter punctuation">}</span></span><span class="token string">)</span></span>
+                              <span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"> <span class="token keyword">end</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        
+                        <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> render <span class="token string-literal"><span class="token string">"chats/messages/index"</span></span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        </code></pre>
+                        <pre class="language-erb" tabindex="0"><code class="language-erb" lang="erb"><span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"><span class="token comment"># app/views/chats/messages/_index.html.erb </span></span><span class="token delimiter punctuation">%&gt;</span></span>
+                        <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_frame_tag <span class="token symbol">:chat_messages</span><span class="token punctuation">,</span> <span class="token symbol">target</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">"_top"</span></span> <span class="token keyword">do</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                          <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_frame_tag <span class="token string-literal"><span class="token string">'page_handler'</span></span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>messages_container<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+                            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>messages<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+                              <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> render <span class="token variable">@messages</span><span class="token punctuation">.</span>reverse </span><span class="token delimiter punctuation">%&gt;</span></span>
+                            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+                            <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> render <span class="token string-literal"><span class="token string">'chats/messages/pager'</span></span><span class="token punctuation">,</span> <span class="token symbol">pagy</span><span class="token operator">:</span> <span class="token variable">@pagy</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                          <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+                        <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"> <span class="token keyword">end</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
+                        </code></pre>
+                        <p>The inital Turbo Frame request is from the "chat_messages" frame and Turbo knows to only render the content with that
+                        Turbo Frame tag. The paginated requests are looking for the "page_handler" Turbo Frame and so Turbo ignores the content
+                        in the "chat_messages" frame.</p>
+                        <p>Damn, I really enjoy Turbo!</p>
+                        <p>As always, let me know if there are any questions about this, if I have anything wrong or if there is anything that
+                        could do with more explanation.</p>
                     </div>
                 </div>
             </div>
@@ -321,11 +398,15 @@
     <!-- Previous/Next Buttons -->
     <div class="container mt-5">
         <div class="row">
-            <div class="col-6 d-none text-center ">
-                <button class="btn home-page-btn">Previous</button>
+            <div class="col-6 text-center ">
+                <a href="blog-post-4.html">
+                    <button class="btn home-page-btn">Previous</button>
+                </a>
             </div>
             <div class="col-6 text-center">
-                <button class="btn home-page-btn">Next</button>
+                <a href="blog-post-6.html">
+                    <button class="btn home-page-btn">Next</button>
+                </a>
             </div>
         </div>
     </div>

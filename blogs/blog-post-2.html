@@ -26,6 +26,7 @@
 
     <!-- favicon here-->
     <script src="https://kit.fontawesome.com/0d939d98c3.js" crossorigin="anonymous"></script>
+    <link href="../assets/css/prism.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css" type="text/css">
     <title>Ryalto Developer Page</title>
 </head>
@@ -148,7 +149,7 @@
                                 <a href="#live-counters">Live Counters</a>
                             </li>
                             <li>
-                                <a href="#pagination">Pagination</a>
+                                <a href="blog-post-5.html">Pagination</a>
                             <li>Global Counters</li>
                             <li>Global Live Content Updates</li>
                   
@@ -248,7 +249,7 @@
                         to be replaced with.</p>
                         <p>You could move the conditional to the controller, which would remove some logic from the view, however by doing it this
                         way the response doesn’t have to worry which view to render, as it just reloads the button partial.</p>
-                        <h5>Content Updates</h5>
+                        <h5 id="content-updates">Content Updates</h5>
                         <p>The way the favourites toggle works is very similar to the subscription toggle. The differences are that it's a create /
                         destroy action instead of an update, and the turbo stream is extracted to and erb partial.</p>
                         <p>There are quite a few partials here. This structure is broken down more than it needs to be as we reuse the coffee
@@ -417,7 +418,7 @@
                         dashboard_favourites_#{dom_id(@coffee)}, and removes it.</p>
                         <img class="mt-2 mb-2 in-blog-content" src="../assets/images/content/hh-content-remove.gif" alt="gif showing content being removed with turbo streams">
                         <p>The final thing that these responses do is update live counters</p>
-                        <h5>Live Counters</h5>
+                        <h5 id="live-counters">Live Counters</h5>
                         <p>As part of the Turbo Stream response from the controller we have an “update” action.</p>
 
                         <pre class="language-erb"
@@ -446,10 +447,14 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-6 text-center ">
-                <button class="btn home-page-btn">Previous</button>
+                <a href="blog-post-1.html">
+                    <button class="btn home-page-btn">Previous</button>
+                </a>
             </div>
             <div class="col-6 text-center">
-                <button class="btn home-page-btn">Next</button>
+                <a href="blog-post-3.html">
+                    <button class="btn home-page-btn">Next</button>
+                </a>
             </div>
         </div>
     </div>
