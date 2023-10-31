@@ -195,14 +195,11 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
-    height: auto;
-    
+    height: auto;  
 }
 
 .meet-the-team-text-margin {
     margin-top: 1.5rem;
-    
-    
 }
 
 .meet-the-team .gen-text {
@@ -462,4 +459,25 @@ footer {
     border-radius: 0.25rem;
 }
 
+/*-------------------------- Careers ------------*/
+
+.careers {
+    height: 64.25vh;
+}
+
+.careers-bg {
+    background:rgba(25, 27, 35, 0.8);
+}
+
+.careers .home-page-btn {
+    border: none;
+    width: auto;
+    color: #191B23;
+    background: #FFC306;
+}
+
+.careers .home-page-btn:hover {
+    color: #191B23;
+    background: #FF9901;
+}
 
