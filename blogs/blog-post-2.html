@@ -44,22 +44,22 @@
             <div class="d-none d-sm-inline-block col-4 text-sm-right">
                 <ul class="list-inline">
                     <li class="list-inline-item">
-                        <a class="social" href="#">
+                        <a class="social" href="#" target="_blank">
                             <i class="fa-solid fa-globe fa-bounce" style="--fa-animation-iteration-count: 3;"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a class="social" href="#">
+                        <a class="social" href="#" target="_blank">
                             <i class="fa-brands fa-github fa-bounce" style="--fa-animation-iteration-count: 3;"></i>
                         </a>
                     </li>
-                    <li class="list-inline-item">
+                    <li class="list-inline-item" target="_blank">
                         <a class="social" href="#">
                             <i class="fa-brands fa-twitter fa-bounce" style="--fa-animation-iteration-count: 3;"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a class="social" href="#">
+                        <a class="social" href="#" target="_blank">
                             <i class="fa-brands fa-linkedin fa-bounce" style="--fa-animation-iteration-count: 3;"></i>
                         </a>
                     </li>
@@ -108,17 +108,17 @@
                 <p>22 March 2022</p>
                 <ul class="list-inline">
                     <li class="list-inline-item">
-                        <a class="social" href="#">
+                        <a class="social" href="#" target="_blank">
                             <i class="fa-brands fa-github"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a class="social" href="#">
+                        <a class="social" href="#" target="_blank">
                             <i class="fa-brands fa-linkedin"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a class="social" href="#">
+                        <a class="social" href="#" target="_blank">
                             <i class="fa-solid fa-envelope"></i>
                         </a>
                     </li>
@@ -193,11 +193,11 @@
                         <img class="mt-2 mb-2 in-blog-content" src="/assets/images/content/hh-sub-toggle.gif" alt="gif of toggling subscription button">
                         <h6>Code</h6>
                         <p><strong>Parent View</strong></p>
-                        <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/pages/subscription.html.erb">app/views/pages/subscription.html.erb</a>
+                        <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/pages/subscription.html.erb" target="_blank">app/views/pages/subscription.html.erb</a>
                         <pre class="language-erb"
                             tabindex="0"><code class="language-erb"><span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> render <span class="token string-literal"><span class="token string">'subscription_interest_toggle'</span></span> </span><span class="token delimiter punctuation">%&gt;</span></span></code></pre>
                         <p><strong>Button Partial</strong></p>
-                        <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/pages/_subscription_interest_toggle.html.erb">app/views/pages/_subscription_interest_toggle.html.erb</a>
+                        <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/pages/_subscription_interest_toggle.html.erb" target="_blank">app/views/pages/_subscription_interest_toggle.html.erb</a>
                         <pre class="language-erb" tabindex="0"><code class="language-erb"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>subscription_interest_toggle<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
                           <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"> <span class="token keyword">if</span> current_user<span class="token operator">&amp;.</span>subscription_interest </span><span class="token delimiter punctuation">%&gt;</span></span>
                             <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> button_to update_subscription_interest_path<span class="token punctuation">,</span>
@@ -217,7 +217,7 @@
                         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
                         </code></pre>
                         <p><strong>Controller (excerpt)</strong></p>
-                        <a href="https://github.com/phil-6/dailybrew/blob/main/app/controllers/registrations_controller.erb">app/controllers/registrations_controller.erb</a>
+                        <a href="https://github.com/phil-6/dailybrew/blob/main/app/controllers/registrations_controller.erb" target="_blank">app/controllers/registrations_controller.erb</a>
                         
                         <pre class="language-ruby" tabindex="0"><code class="language-ruby"><span class="token comment"># app/controllers/registrations_controller.rb</span>
                         <span class="token keyword">class</span> <span class="token class-name">RegistrationsController</span> <span class="token operator">&lt;</span> Devise<span class="token double-colon punctuation">::</span>RegistrationsController
@@ -244,7 +244,7 @@
                                   <span class="token symbol">partial</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">'pages/subscription_interest_toggle'</span></span>
                                 <span class="token punctuation">)</span></code></pre>
 
-                        <p>“replace” is the <a href="https://turbo.hotwired.dev/handbook/streams#stream-messages-and-actions">action</a>. The partial in the response will replace the existing element with the target DOM ID.
+                        <p>“replace” is the <a href="https://turbo.hotwired.dev/handbook/streams#stream-messages-and-actions" target="_blank">action</a>. The partial in the response will replace the existing element with the target DOM ID.
                         'subscription_interest_toggle' is the HTML ID which the stream is targeting and the partial is what the target is going
                         to be replaced with.</p>
                         <p>You could move the conditional to the controller, which would remove some logic from the view, however by doing it this
@@ -257,7 +257,7 @@
                         larger examples which are included for additional context.</p>
                         <h6>Code</h6>
                         <p><strong>Toggle Button Partial</strong></p>
-                        <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/favourites/_favourite_toggle.html.erb">app/views/favourites/_favourite_toggle.html.erb</a>
+                        <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/favourites/_favourite_toggle.html.erb" target="_blank">app/views/favourites/_favourite_toggle.html.erb</a>
 
                         <pre class="language-erb"
                             tabindex="0"><code class="language-erb"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>favourite_toggle_<span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> dom_id<span class="token punctuation">(</span>coffee<span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span><span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
@@ -279,7 +279,7 @@
                         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
 
                         <p><strong>Parent View</strong></p>
-                        <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/dashboard/index.html.erb">app/views/dashboard/index.html.erb</a>
+                        <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/dashboard/index.html.erb" target="_blank">app/views/dashboard/index.html.erb</a>
 
                         <pre class="language-erb"
                             tabindex="0"><code class="language-erb"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>section</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>header<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
@@ -297,7 +297,7 @@
                         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>section</span><span class="token punctuation">&gt;</span></span></code></pre>
 
                         <p><strong>Favourite Partial</strong></p>
-                        <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/favourites/_favourite.html.erb">app/views/favourites/_favourite.html.erb</a>
+                        <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/favourites/_favourite.html.erb" target="_blank">app/views/favourites/_favourite.html.erb</a>
 
                         <pre class="language-erb"
                             tabindex="0"><code class="language-erb"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dashboard_favourites_<span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> dom_id<span class="token punctuation">(</span>coffee<span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span><span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>favourite<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
@@ -305,9 +305,9 @@
                         <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></code></pre>
 
                         <p><strong>Coffee Partial</strong></p>
-                        <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/coffees/_coffee.html.erb">app/views/coffees/_coffee.html.erb</a>
+                        <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/coffees/_coffee.html.erb" target="_blank">app/views/coffees/_coffee.html.erb</a>
                         <p><strong>Controller</strong></p>
-                        <a href="https://github.com/phil-6/dailybrew/blob/main/app/controllers/favourites_controller.rb">app/controllers/favourites_controller.rb</a>
+                        <a href="https://github.com/phil-6/dailybrew/blob/main/app/controllers/favourites_controller.rb" target="_blank">app/controllers/favourites_controller.rb</a>
                         
                         <pre class="language-ruby" tabindex="0"><code class="language-ruby"><span class="token keyword">class</span> <span class="token class-name">FavouritesController</span> <span class="token operator">&lt;</span> ApplicationController
                           <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">index</span></span>
@@ -335,7 +335,7 @@
                         <span class="token keyword">end</span></code></pre>
 
                         <p><strong>Create Turbo Stream</strong></p>
-                        <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/favourites/create.turbo_stream.erb">app/views/favourites/create.turbo_stream.erb</a>
+                        <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/favourites/create.turbo_stream.erb" target="_blank">app/views/favourites/create.turbo_stream.erb</a>
                         
                         <pre class="language-erb"
                             tabindex="0"><code class="language-erb"><span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_stream<span class="token punctuation">.</span>replace<span class="token punctuation">(</span>
@@ -353,7 +353,7 @@
                               <span class="token symbol">locals</span><span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token symbol">coffee</span><span class="token operator">:</span> <span class="token variable">@coffee</span> <span class="token punctuation">}</span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span></code></pre>
 
                         <p><strong>Destroy Turbo Stream</strong></p>
-                        <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/favourites/destroy.turbo_stream.erb">app/views/favourites/destroy.turbo_stream.erb</a>
+                        <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/favourites/destroy.turbo_stream.erb" target="_blank">app/views/favourites/destroy.turbo_stream.erb</a>
                         
                         <pre class="language-erb"
                             tabindex="0"><code class="language-erb"><span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_stream<span class="token punctuation">.</span>remove<span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"dashboard_favourites_</span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">dom_id<span class="token punctuation">(</span><span class="token variable">@coffee</span><span class="token punctuation">)</span></span><span class="token delimiter punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">)</span> </span><span class="token delimiter punctuation">%&gt;</span></span>

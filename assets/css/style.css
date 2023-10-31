@@ -410,6 +410,15 @@ footer {
     padding-right: 50px;
 }
 
+.blog-full a {
+    color:#FFC306;
+}
+
+.blog-full a:hover {
+    color: #FF9901;
+    text-decoration: underline;
+}
+
 .in-blog-content {
     width: inherit;
     object-fit: contain;
@@ -432,59 +441,6 @@ footer {
     .blog-full {
             width: 90%;
         }
-}
-
-
-/* ------------- Code Snippet Colors --------------- */
-
-.blog-code-snippet {
-    background: #2d2d2d;
-    color: #fbfbfb;
-    overflow: auto;
-}
-
-.token-js-operator, .token-ruby-operator {
-    color: #67cdcc;
-}
-
-.token-js-function {
-    color: #f08d49;
-}
-
-.token-js-keyword, .token-ruby-keyword {
-    color: #cc99cd;
-}
-
-.token-js-string, .token-ruby-string {
-    color: #7ec699;
-}
-
-.token-js-comment, .token-ruby-comment {
-    color: #999;
-}
-
-.token-js-punctuation {
-    color: #ccc;
-}
-
-.token-css-selector {
-    color: #cc99cd;
-}
-
-.token-css-property, .token-ruby-symbol {
-    color: #f8c555;
-}
-
-.token-css-variable {
-    color: #7ec699;
-}
-
-.token-css-punctuation {
-    color: #ccc;
-}
-
-.token-ruby-tag {
-    color: #e2777a;
 }
 
 /* ------------- Previous/Next Buttons --------- */

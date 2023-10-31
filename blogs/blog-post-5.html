@@ -44,22 +44,22 @@
             <div class="d-none d-sm-inline-block col-4 text-sm-right">
                 <ul class="list-inline">
                     <li class="list-inline-item">
-                        <a class="social" href="#">
+                        <a class="social" href="#" target="_blank">
                             <i class="fa-solid fa-globe fa-bounce" style="--fa-animation-iteration-count: 3;"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a class="social" href="#">
+                        <a class="social" href="#" target="_blank">
                             <i class="fa-brands fa-github fa-bounce" style="--fa-animation-iteration-count: 3;"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a class="social" href="#">
+                        <a class="social" href="#" target="_blank">
                             <i class="fa-brands fa-twitter fa-bounce" style="--fa-animation-iteration-count: 3;"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a class="social" href="#">
+                        <a class="social" href="#" target="_blank">
                             <i class="fa-brands fa-linkedin fa-bounce" style="--fa-animation-iteration-count: 3;"></i>
                         </a>
                     </li>
@@ -108,17 +108,17 @@
                 <p>27 June 2022</p>
                 <ul class="list-inline">
                     <li class="list-inline-item">
-                        <a class="social" href="#">
+                        <a class="social" href="#" target="_blank">
                             <i class="fa-brands fa-github"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a class="social" href="#">
+                        <a class="social" href="#" target="_blank">
                             <i class="fa-brands fa-linkedin"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a class="social" href="#">
+                        <a class="social" href="#" target="_blank">
                             <i class="fa-solid fa-envelope"></i>
                         </a>
                     </li>
@@ -179,7 +179,7 @@
                         <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> render <span class="token string-literal"><span class="token string">'shared/index_pager'</span></span><span class="token punctuation">,</span> <span class="token symbol">pagy</span><span class="token operator">:</span> <span class="token variable">@pagy</span> </span><span class="token delimiter punctuation">%&gt;</span></span>
                         </code></pre>
                         <p>Then our index page renders our collection of roasters. This uses some snazzy Rails shorthand for rendering a
-                        collection. You can learn more about this shorthand in the <a href="https://guides.rubyonrails.org/layouts_and_rendering.html#rendering-collections">Rails Docs</a>, or this guide from <a href="https://thoughtbot.com/blog/rendering-collections-in-rails">Thoughtbot</a>. You can see we
+                        collection. You can learn more about this shorthand in the <a href="https://guides.rubyonrails.org/layouts_and_rendering.html#rendering-collections" target="_blank">Rails Docs</a>, or this guide from <a href="https://thoughtbot.com/blog/rendering-collections-in-rails" target="_blank">Thoughtbot</a>. You can see we
                         have a couple of extra bits around our collection.</p>
                         <pre class="language-erb" tabindex="0"><code class="language-erb" lang="erb"><span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%</span><span class="token ruby language-ruby"><span class="token comment"># app/views/roasters/index.html.erb </span></span><span class="token delimiter punctuation">%&gt;</span></span>
                         <span class="token erb language-erb"><span class="token delimiter punctuation">&lt;%=</span><span class="token ruby language-ruby"> turbo_frame_tag <span class="token string-literal"><span class="token string">'page_handler'</span></span> </span><span class="token delimiter punctuation">%&gt;</span></span>
@@ -191,7 +191,7 @@
                         <p>To look a the three key sections of our index page:</p>
                         <p>The page handler is an empty turbo frame that we are going to use as a target later on for our Turbo Stream content from
                         the server.</p>
-                        <p>We then render each of our roasters in the <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/roasters/_roaster.html.erb">_roaster partial</a>.</p>
+                        <p>We then render each of our roasters in the <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/roasters/_roaster.html.erb" target="_blank">_roaster partial</a>.</p>
                         <p>Finally we render our index-pager, this is our partial for the pagination controllers. We have a few extra bits in this,
                         we're leveraging the controller_name helper to construct an ID and class for the html. We do this as we share this pager
                         across several views from different controllers.</p>
@@ -214,7 +214,7 @@
                         programmatically construct the link. This link is targeting the page_hander Turbo Frame. This informs Turbo that the
                         response from this link should replace the content of the page_handler frame only. We need to explicitly declare this as
                         our link is not nested within that turbo frame.</p>
-                        <p>We then use a Turbo Frame <a href="https://guides.rubyonrails.org/layouts_and_rendering.html#the-variants-option">render variant</a> for the response. This means that when our controller responds to our Turbo
+                        <p>We then use a Turbo Frame <a href="https://guides.rubyonrails.org/layouts_and_rendering.html#the-variants-option" target="_blank">render variant</a> for the response. This means that when our controller responds to our Turbo
                         Frame request, instead of re-rendering the index.html.erb file it looks for index.html+turbo_frame.erb and renders that
                         instead. (This is worth remembering for something quite a bit later on!)</p>
                         <p>Our Turbo Frame variant content is wrapped in a page_handler Turbo Frame, as our link is looking to target that Turbo
@@ -257,7 +257,7 @@
                         can do better than that. With 16 lines of JavaScript!</p>
                         <h5 id="part-2">Infinite Scrolling and Auto Clicking</h5>
                         <p>In order for our page to allow a seamless scrolling experience we don't need to do much more. We're going to leverage
-                        <a href="https://github.com/stimulus-use/stimulus-use">stimulus-use</a> which is a small extension to stimulus. First we need to add this to our import map. Add the following line
+                        <a href="https://github.com/stimulus-use/stimulus-use" target="_blank">stimulus-use</a> which is a small extension to stimulus. First we need to add this to our import map. Add the following line
                         to app/config/importmap.rb</p>
                         <pre class="language-ruby" tabindex="0"><code class="language-ruby" lang="ruby"><span class="token comment"># app/config/importmap.rb</span>
                         pin <span class="token string-literal"><span class="token string">"stimulus-use"</span></span><span class="token punctuation">,</span> <span class="token symbol">to</span><span class="token operator">:</span> <span class="token string-literal"><span class="token string">"https://ga.jspm.io/npm:stimulus-use@0.50.0-2/dist/index.js"</span></span>
@@ -300,7 +300,7 @@
                         <p>For this, the main focus we need to have is clear naming conventions. The Daily Brew admin dashboard has three paginated
                         tables. Each table has its own page_hander and specific ID in the HTML, as well as partials for the table and table
                         pager.</p>
-                        <p>We use a <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/admin/dashboard.html%2Bturbo_frame.erb">shared Turbo Frame response variant</a>a that contains the Turbo Streams for each of the tables. Depending on which
+                        <p>We use a <a href="https://github.com/phil-6/dailybrew/blob/main/app/views/admin/dashboard.html%2Bturbo_frame.erb" target="_blank">shared Turbo Frame response variant</a>a that contains the Turbo Streams for each of the tables. Depending on which
                         table is being scrolled, the response will render the correct turbo strea</p>
                         <p>A nice straight forward extension to a single paginated section.</p>
                         <h5 id="part-4">Paginating a Chat</h5>
