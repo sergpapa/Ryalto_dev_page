@@ -459,6 +459,35 @@ footer {
     border-radius: 0.25rem;
 }
 
+/*-------------------------- Meet the Team ------------*/
+
+.team-member-card {
+    width: 100%;
+    height: 30vh;
+    margin:  10px;
+    background: #191B23;
+    color: #FFC306;
+    box-shadow: 0px 0px 20px 2px rgba(255, 195, 6, 0.2);
+    border-radius: 10%;
+}
+
+.team-member-card:hover{
+    color: #FF9901;
+    background-color: rgba(27, 28, 36, 1);
+    box-shadow: 0px 0px 20px 2px rgba(255, 153, 1, 0.4);
+}
+
+
+.team-member-photo {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    width: 75px;
+    height: 75px;
+    border-radius: 10%;
+}
+
+
+
 /*-------------------------- Careers ------------*/
 
 .careers {
